@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Hobby</title>
+</head>
+<style>
+    form {
+        border: 1px solid #ddd;
+        text-align: center;
+        width: 25%;
+        padding: 0 5px;
+        margin: 0 auto;
+    }
+
+    td, th {
+        text-align: left;
+        padding: 8px;
+    }
+
+    td {
+        color: blue;
+    }
+
+    .header {
+        background-color: coral;
+        text-align: center;
+        border: 1px solid #ddd;
+        padding: 7px;
+        color:white;
+    }
+
+
+    .sub-box {
+        text-align: left;
+        color: orangered;
+    }
+
+
+</style>
+<body>
+    <form method="get" action="">
+    <h2 class="header">SỞ THÍCH CỦA BẠN</h2>
+        <table>
+            <tr>
+                <td>Họ và tên</td>
+                <td><input type="text" name="name"></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="text" name="email"></td>
+            </tr>
+            <tr>
+                <td>Sở thích</td>
+                <td class="sub-box">
+                    <label><input type="checkbox" name="hobby">Thể thao</label>
+                    <label><input type="checkbox" name="hobby">Âm nhạc</label>
+                    <label><input type="checkbox" name="hobby">Đọc sách<br></label>
+                    <label><input type="checkbox" name="hobby">Lướt Web</label>
+                    <label><input type="checkbox" name="hobby">Chơi game</label>
+                    <label><input type="checkbox" name="hobby">Điện ảnh <br></label>
+                    <label><input type="checkbox" name="hobby">Du lịch <br></label>
+                </td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td>
+                    <input type="submit" value="Gửi thông tin">
+                    <input type="reset" value="Nhập lại">
+                </td>
+            </tr>
+        </table>
+
+    </form>
+</body>
+</html>
