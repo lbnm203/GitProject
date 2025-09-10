@@ -3,43 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>Calculator</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <form id="calculator">
-        <h2>Calculator</h2>
-        <input type="number" id="a">
-        <input type="number" id="b"> <br><br>
-        <button type="button" onclick="calc('add')">Addition (+)</button>
-        <button type="button" onclick="calc('sub')">Subtraction (-)</button>
-        <button type="button" onclick="calc('multip')">Multiplication (X)</button>
-        <button type="button" onclick="calc('div')">Division (/)</button>
-    </form>
-    <br><br>
-    <div id="result"></div>
-</body>
-    <script>
-        function calc(option){
-            let a = parseInt(document.getElementById('a').value);
-            let b = parseInt(document.getElementById('b').value);
-            if (isNaN(a) || isNaN(b)) {
-                document.getElementById('result').innerHTML = `Hãy nhập các số còn lại`
-                return;
-            }
+    <table>
+        <tr>
+            <td colspan="4"><input id="result" readonly></td>
+        </tr>
+        <tr>
+            <td><button value="1">1</button></td>
+            <td><button value="2">2</button></td>
+            <td><button value="3">3</button></td>
+            <td><button value="/">/</button></td>
+        </tr>
+        <tr>
+            <td><button value="4">4</button></td>
+            <td><button value="5">5</button></td>
+            <td><button value="6">6</button></td>
+            <td><button value="*">*</button></td>
+        </tr>
+        <tr>
+            <td><button value="7">7</button></td>
+            <td><button value="8">8</button></td>
+            <td><button value="9">9</button></td>
+            <td><button value="-">-</button></td>
+        </tr>
+        <tr>
+            <td><button value=".">.</button></td>
+            <td><button value="0">0</button></td>
+            <td><button value="=">=</button></td>
+            <td><button value="+">+</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="clear()">C</button></td>
+        </tr>
+    </table>
 
-            let result;
-            switch(option) {
-                case "add": result = a + b; break;
-                case "sub": result = a - b; break;
-                case "multip": result = a * b; break;
-                case "div":
-                    if (b === 0) {
-                        document.getElementById('result').innerHTML = "<br> Không thể chia số cho 0"
-                        return
-                    }
-                    result = a / b;
-                    break;
-            }
-            document.getElementById('result').innerHTML = `Result: ${result}`;
-        }
-    </script>
+</body>
+<script src="index.js"></script>
 </html>

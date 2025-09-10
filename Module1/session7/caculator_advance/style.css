@@ -1,0 +1,33 @@
+table {
+    background: #353232;
+    border-collapse: collapse;
+    border-radius: 10px;
+    margin: 0 auto;
+    max-width: 300px;
+    overflow: hidden;
+}
+
+#result {
+    width: 100%;
+    padding: 17px;
+    font-size: 1.5em;
+    background: lightgoldenrodyellow;
+    text-align: right;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    background: gray;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+tr td {
+    text-align: center;
+    padding: 2px;
+}
