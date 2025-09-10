@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+</head>
+<body>
+    <h2>Tính điểm trung bình và tổng</h2>
+    <input type="number" id="ly" placeholder="Điểm vật lý">
+    <input type="number" id="hoa" placeholder="Điểm hóa học">
+    <input type="number" id="sinh" placeholder="Điểm sinh học"><br><br>
+    <button onclick="calc()">Tính</button>
+    <div id="result"></div>
+    <br>
+
+    <h2>Chuyển oC sang oF </h2>
+    <input type="number" id="temp" placeholder="Nhập oC"><br><br>
+    <button onclick="tempCal()">Tính</button>
+    <div id="temp_result"></div>
+    <br>
+
+    <h2>Diện tích và chu vi hình tròn</h2>
+    <input type="number" id="r" placeholder="Nhập bán kính hình tròn"><br><br>
+    <button onclick="areaOfCircle()">Tính</button>
+    <div id="circle_result"></div>
+    <br>
+
+</body>
+<script>
+    function calc() {
+        let dLy = parseFloat(document.getElementById("ly").value);
+        let dHoa = parseFloat(document.getElementById("hoa").value);
+        let dSinh = parseFloat(document.getElementById("sinh").value);
+        if (isNaN(dLy) || isNaN(dHoa) || isNaN(dSinh)) {
+            document.getElementById("result").innerHTML = "<br> Nhập đủ điểm 3 môn"
+        } else if (dLy < 0 || dLy > 10) {
+            document.getElementById("result").innerHTML = "<br> Hãy nhập thang điểm môn Lý trong khoảng 0 - 10"
+        } else if (dHoa < 0 || dHoa > 10) {
+            document.getElementById("result").innerHTML = "<br> Hãy nhập thang điểm môn Hóa trong khoảng 0 - 10"
+        } else if (dSinh < 0 || dSinh > 10) {
+            document.getElementById("result").innerHTML = "<br> Hãy nhập thang điểm môn Sinh trong khoảng 0 - 10"
+        } else {
+            let tong = dLy + dHoa + dSinh;
+            let dtb = tong / 3;
+            document.getElementById("result").innerHTML = `<br> Tổng điểm = ${tong} <br> Điểm trung bình = ${dtb.toFixed(1)}`
+        }
+    }
+    function tempCal() {
+        let doC = parseFloat(document.getElementById("temp").value);
+        let doF = (9*doC) / 5 + 32
+        document.getElementById("temp_result").innerHTML = `<br> độ F được chuyền từ oC: ${doF}oF<br><br>`
+    }
+    function areaOfCircle() {
+        const pi = 3.14159;
+        let r = parseFloat(document.getElementById("r").value);
+        let sTron = pi * r**2;
+        let cvTron = 2 * pi * r;
+        document.getElementById("circle_result").innerHTML = `<br> Diện tích hình tròn: ${sTron.toFixed(2)}cm<br>Chu vi hình tròn: ${cvTron.toFixed(2)}cm<br><br>`
+
+    }
+
+
+</script>
+</html>

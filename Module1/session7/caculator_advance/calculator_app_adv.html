@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+</head>
+<body>
+    <form id="calculator">
+        <h2>Calculator</h2>
+        <input type="number" id="a">
+        <input type="number" id="b"> <br><br>
+        <button type="button" onclick="calc('add')">Addition (+)</button>
+        <button type="button" onclick="calc('sub')">Subtraction (-)</button>
+        <button type="button" onclick="calc('multip')">Multiplication (X)</button>
+        <button type="button" onclick="calc('div')">Division (/)</button>
+    </form>
+    <br><br>
+    <div id="result"></div>
+</body>
+    <script>
+        function calc(option){
+            let a = parseInt(document.getElementById('a').value);
+            let b = parseInt(document.getElementById('b').value);
+            if (isNaN(a) || isNaN(b)) {
+                document.getElementById('result').innerHTML = `Hãy nhập các số còn lại`
+                return;
+            }
+
+            let result;
+            switch(option) {
+                case "add": result = a + b; break;
+                case "sub": result = a - b; break;
+                case "multip": result = a * b; break;
+                case "div":
+                    if (b === 0) {
+                        document.getElementById('result').innerHTML = "<br> Không thể chia số cho 0"
+                        return
+                    }
+                    result = a / b;
+                    break;
+            }
+            document.getElementById('result').innerHTML = `Result: ${result}`;
+        }
+    </script>
+</html>
