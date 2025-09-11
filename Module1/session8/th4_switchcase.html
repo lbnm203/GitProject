@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input type="text" id="name" placeholder="Enter your name">
+    <button onclick="checkSwitch1()">Check Edge</button>
+    <br><br>
+    <div id="result"></div>
+
+    <button onclick="checkSwitch2()">Check a num</button>
+    <br><br>
+
+    <button onclick="checkSwitch3()">Check 0 num</button>
+    <br><br>
+</body>
+<script>
+    function checkSwitch1() {
+        let name = document.getElementById('name').value;
+        switch (name) {
+            case 'Edge':
+                alert("You've got a Edge!");
+                break;
+            case 'Chrome':
+            case 'Firefox':
+            case 'Safari':
+            case 'Opera':
+                alert("Ok we support these browser too");
+                break;
+            default:
+                alert('We hope that this page looks ok!');
+        }
+    }
+    function checkSwitch2() {
+        let check_a = +prompt('a?', '')
+        switch (check_a) {
+            case 0:
+                alert(0)
+                break;
+            case 1:
+                alert(1)
+                break;
+            case 2:
+            case 3:
+                alert(2,3)
+                break;
+        }
+    }
+    function checkSwitch3() {
+        let value = prompt('Type a number', 0);
+        switch (true) {
+            case (value > 0):
+                alert(1);
+                break;
+            case (value < 0):
+                alert(-1);
+                break;
+            default:
+                alert(0);
+                break;
+        }
+    }
+</script>
+</html>

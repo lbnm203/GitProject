@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Leaf Year Check</title>
+</head>
+<body>
+    <input type="number" id="year">
+    <button onclick="show()">Check</button>
+    <br><br>
+    <div id="result"></div>
+</body>
+<script>
+    function show() {
+        const year = parseInt(document.getElementById('year').value);
+
+        if ((year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0)) {
+            document.getElementById('result').innerHTML = "LEAP YEAR";
+        } else {
+            document.getElementById('result').innerHTML = "NOT LEAP YEAR";
+        }
+    }
+
+</script>
+</html>

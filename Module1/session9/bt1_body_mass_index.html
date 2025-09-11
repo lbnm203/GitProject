@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BMI</title>
+</head>
+<body>
+    <h2>Compute BMI</h2>
+    <input type="number" id="height" placeholder="Enter height">
+    <input type="number" id="weight" placeholder="Enter weight">
+    <button onclick="computeBMI()">Tính</button>
+    <br><br>
+    <div id="result"></div>
+</body>
+<script>
+    function computeBMI() {
+        let height = parseFloat(document.getElementById('height').value);
+        let weight = parseFloat(document.getElementById('weight').value);
+        bmi = weight / (height**2);
+
+        if (bmi < 18.5) {
+            document.getElementById('result').innerHTML = `MBI = ${bmi.toFixed(2)}% --> Underweight`;
+        } else if (bmi < 25.0) {
+            document.getElementById('result').innerHTML = `MBI = ${bmi.toFixed(2)}% --> Normal`;
+        } else if (bmi < 30.0) {
+            document.getElementById('result').innerHTML = `MBI = ${bmi.toFixed(2)}% --> Overweight`;
+        } else {
+            document.getElementById('result').innerHTML = `MBI = ${bmi.toFixed(2)}% --> Obese`;
+        }
+
+    }
+</script>
+</html>

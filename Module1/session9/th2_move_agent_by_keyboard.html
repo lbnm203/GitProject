@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Move Agent</title>
+</head>
+
+<body onload="startMove()">
+    <form action="">
+        <img id="nobita" src="https://upload.wikimedia.org/wikipedia/vi/2/2c/Nobita.png" style="position: absolute; top: 0; left: 0" height=300 width=240>
+
+    </form>
+</body>
+<script>
+    function upMove() {
+        let element = document.getElementById('nobita');
+        element.style.top = parseInt(element.style.top) - 10 + 'px';
+    }
+
+    function downMove() {
+        let element = document.getElementById('nobita');
+        element.style.top = parseInt(element.style.top) + 10 + 'px';
+    }
+
+    function leftMove() {
+        let element = document.getElementById('nobita');
+        element.style.left = parseInt(element.style.left) - 10 + 'px';
+    }
+
+    function rightMove() {
+        let element = document.getElementById('nobita');
+        element.style.left = parseInt(element.style.left) + 10 + 'px';
+    }
+
+    function moveSelect(opt) {
+        switch (opt.keyCode) {
+            case 37:
+                leftMove();
+                break;
+            case 38:
+                upMove();
+                break;
+            case 39:
+                rightMove();
+                break;
+            case 40:
+                downMove();
+                break;
+        }
+    }
+
+    function startMove() {
+        window.addEventListener('keydown', moveSelect);
+    }
+
+</script>
+</html>

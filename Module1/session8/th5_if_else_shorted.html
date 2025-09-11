@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shorted If Else</title>
+</head>
+<body>
+    <button onclick="compareSum()">Compare Sum</button>
+    <br><br>
+
+    <button onclick="showString()">Show Message</button>
+    <br><br>
+
+    <button onclick="monday()">Check Mon</button>
+    <br><br>
+
+</body>
+<script>
+    function compareSum() {
+        let a = +prompt("a = ");
+        let b = +prompt("b = ")
+        let sum = a + b;
+        result = (sum < 4) ? 'Below' : 'Over';
+        alert(result);
+    }
+
+    function showString() {
+        let login = prompt("Enter a string");
+        message = (login === 'Employee') ?
+            'Hello' : (login === 'Director') ?
+                'Greeting' : (login === '') ?
+                    'No login' : ''
+        alert(message);
+    }
+
+    function monday() {
+        let day = "Mon";
+        let message = "";
+
+        switch (day) {
+            case "Mon":
+                message = "Ngày đầu tuần";
+
+            case "Wed":
+                message = "Ngày giữa tuần";
+
+            case "Sat":
+            case "Sun":
+                message = "Ngày nghỉ";
+        }
+
+        document.write(message);
+    }
+</script>
+</html>

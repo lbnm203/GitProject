@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Print If Else</title>
+</head>
+<body>
+    <input type="text" id="name">
+    <button onclick="check()">Check</button>
+    <br><br>
+    <div id="result"></div>
+</body>
+<script>
+    function check() {
+        let user = document.getElementById('name');
+        if (user.value === 'Admin') {
+            let password = prompt('Enter Password');
+            if (password === 'TheMaster') {
+                document.getElementById('result').innerHTML = "Welcome!";
+            } else if (password === null || password === '') {
+                document.getElementById('result').innerHTML = "Cancel";
+            }
+        } else {
+            document.getElementById('result').innerHTML = "I dont know you";
+        }
+    }
+</script>
+</html>

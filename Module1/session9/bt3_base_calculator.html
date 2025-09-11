@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+</head>
+<style>
+    table {
+        border-collapse: collapse;
+        border: 5px solid black;
+        width: 300px;
+        height: 50px;
+        margin: 0 auto;
+        background-color: white;
+    }
+
+    #result {
+        width: 100%;
+        font-size: 17px;
+        padding: 12px;
+        margin: 5px auto;
+        text-align: right;
+        box-sizing: border-box;
+    }
+
+    button {
+        background-color: white;
+        width: 50px;
+        height: 50px;
+        margin: 5px;
+        color: blue;
+        font-weight: bold;
+        font-size: 1.5em;
+    }
+
+    tr td {
+        padding: 8px;
+        text-align: center;
+    }
+</style>
+<body>
+    <table>
+        <tr>
+            <td colspan="4"><input id="result" readonly></td>
+        </tr>
+        <tr>
+            <td><button>1</button></td>
+            <td><button>2</button></td>
+            <td><button>3</button></td>
+            <td><button>+</button></td>
+        </tr>
+        <tr>
+            <td><button>4</button></td>
+            <td><button>5</button></td>
+            <td><button>6</button></td>
+            <td><button>-</button></td>
+        </tr>
+        <tr>
+            <td><button>7</button></td>
+            <td><button>8</button></td>
+            <td><button>9</button></td>
+            <td><button>*</button></td>
+        </tr>
+        <tr>
+            <td><button>C</button></td>
+            <td><button>0</button></td>
+            <td><button>=</button></td>
+            <td><button>/</button></td>
+        </tr>
+    </table>
+</body>
+<script>
+    const result = document.getElementById("result");
+    const buttons = document.querySelectorAll("button");
+    let total = "";
+
+    // Gắn sự kiện click cho từng nút
+    buttons.forEach(button => {
+        button.addEventListener("click", () => {
+            const value = button.textContent;
+
+            if (value === "C") {
+                total = "";
+                result.value = "";
+            }
+            else if (value === "=") {
+                try {
+                    total = eval(total).toString();
+                    result.value = total;
+                } catch (e) {
+                    result.value = "Error";
+                    total = "";
+                }
+            }
+            else {
+                total += value;
+                result.value = total;
+            }
+        });
+    });
+</script>
+</html>
