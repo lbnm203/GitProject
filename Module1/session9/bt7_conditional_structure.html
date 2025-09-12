@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Conditional Structure</title>
+</head>
+<body>
+    <h3>Bài 1: </h3>
+    <p>Nhập hai số a và b, kiểm tra xem a có chia hết cho b hay không.</p>
+    <input type="number" id="a" placeholder="a">
+    <input type="number" id="b" placeholder="b">
+    <button onclick="divineAB()">Tính</button><br><br>
+    <div id="b1_result"></div>
+
+    <h3>Bài 2:</h3>
+    <p>Nhập tuổi, kiểm tra và in kết quả xem học sinh có đủ điều kiện vào học lớp 10 hay không.</p>
+    <input type="number" id="age" placeholder="Nhập số tuổi">
+    <button onclick="checkAge()">Kiểm tra</button><br><br>
+    <div id="b2_result"></div>
+
+    <h3>Bài 3:</h3>
+    <p>Nhập một số nguyên bất kỳ, in ra kết quả để xác định số đó lớn hơn, nhỏ hơn hay bằng 0.</p>
+    <input type="number" id="int-num" placeholder="Nhập số nguyên">
+    <button onclick="checkIntNum()">Kiểm tra</button><br><br>
+    <div id="b3_result"></div>
+
+
+    <h3>Bài 4:</h3>
+    <p>Nhập 3 số nguyên, tìm và in ra giá trị lớn nhất trong ba số đó.</p>
+    <input type="number" id="b4-a" placeholder="a">
+    <input type="number" id="b4-b" placeholder="b">
+    <input type="number" id="b4-c" placeholder="c">
+    <button onclick="findMax()">Kiểm tra</button><br><br>
+    <div id="b4_result"></div>
+
+    <h3>Bài 5:</h3>
+    <p>Xếp loại học lực của học sinh dựa trên: [Điểm bài kiểm tra, Điểm thi giữa kỳ, Điểm thi cuối kỳ</p>
+    <input type="number" id="diem-kt" placeholder="Nhập điểm kiểm tra">
+    <input type="number" id="diem-gk" placeholder="Nhập điểm giữa kì">
+    <input type="number" id="diem-ck" placeholder="Nhập điểm cuối kì">
+    <button onclick="scoreClassifier()">Xếp loại</button><br><br>
+    <div id="b5_result"></div>
+
+    <h3>Bài 6: </h3>
+    <p>Tính hoa hồng nhận được dựa trên mức doanh số bán hàng.</p>
+    <input type="number" id="hoa-hong" placeholder="Nhập % hoa hồng">
+    <input type="number" id="doanh-thu" placeholder="Nhập số doanh thu">
+    <button onclick="saleComission()">Tính</button><br><br>
+    <div id="b6_result"></div>
+
+    <h3>Bài 7: </h3>
+    <p>Tính cước điện thoại cho một hộ gia đình dựa trên các thông số được cung cấp.</p>
+    <input type="number" id="noi-mang" placeholder="Nhập số phút nội mạng">
+    <input type="number" id="ngoai-mang" placeholder="Nhập số phút ngoại mạng">
+    <button onclick="feeCall()">Tính cước</button><br><br>
+    <div id="b7_result"></div>
+
+
+</body>
+<script>
+    function divineAB() {
+        let a = parseInt(document.getElementById("a").value);
+        let b = parseInt(document.getElementById("b").value);
+
+        if (b === 0) {
+            document.getElementById("b1_result").innerHTML = "Không thể chia 1 số cho 0"
+        } else if (a % b === 0) {
+            document.getElementById("b1_result").innerHTML = "a chia hết cho b"
+        } else {
+            document.getElementById("b1_result").innerHTML = "a không chia hết cho b"
+        }
+    }
+
+    function checkAge() {
+        let age = parseInt(document.getElementById("age").value);
+        if (age <= 0) {
+            document.getElementById("b2_result").innerHTML = "Hãy nhập tuổi lớn 0"
+        } else if (age < 15) {
+            document.getElementById("b2_result").innerHTML = "Thí sinh không đủ điều kiện vào lớp 10"
+        } else {
+            document.getElementById("b2_result").innerHTML = "Thí sinh đủ điều kiện vào lớp 10"
+        }
+    }
+
+    function checkIntNum() {
+        let num = parseInt(document.getElementById("int-num").value);
+        if (num === 0) {
+            document.getElementById('b3_result').innerHTML = `${num} bằng 0`
+        } else if (num > 0) {
+            document.getElementById('b3_result').innerHTML = `${num} lớn hơn 0`
+        } else {
+            document.getElementById('b3_result').innerHTML = `${num} nhỏ hơn 0`
+        }
+    }
+
+    function findMax() {
+        let a = parseInt(document.getElementById("b4-a").value);
+        let b = parseInt(document.getElementById("b4-b").value);
+        let c = parseInt(document.getElementById("b4-c").value);
+
+        if (a === b && a === c) {
+            document.getElementById('b4_result').innerHTML = `Max = ${a}`
+        }
+
+        if (a > b && a > c) {
+            document.getElementById('b4_result').innerHTML = `Max = ${a}`
+        } else if (b > c) {
+            document.getElementById('b4_result').innerHTML = `Max = ${b}`
+        } else {
+            document.getElementById('b4_result').innerHTML = `Max = ${c}`
+        }
+    }
+
+    function scoreClassifier() {
+        let diemkt = parseFloat(document.getElementById("diem-kt").value);
+        let diemgk = parseFloat(document.getElementById("diem-gk").value);
+        let diemck = parseFloat(document.getElementById("diem-ck").value);
+        total = (diemkt + diemgk*2 + diemck*3) / 6
+
+        if (diemkt < 0 || diemgk < 0 || diemck < 0 || diemkt > 10 || diemgk > 10 || diemck > 10 ) {
+            document.getElementById("b5_result").innerHTML = "Vui lòng nhập đúng thang điểm 0 - 10"
+        } else if (total > 8.9) {
+            document.getElementById('b5_result').innerHTML = `Điểm: ${total.toFixed(2)} -- Xếp loại Xuất sắc`
+        } else if (total > 7.9) {
+            document.getElementById('b5_result').innerHTML = `Điểm: ${total.toFixed(2)} -- Xếp loại Giỏi`
+        } else if (total > 6.9) {
+            document.getElementById('b5_result').innerHTML = `Điểm: ${total.toFixed(2)} -- Xếp loại Khá`
+        } else if (total > 4.9) {
+            document.getElementById('b5_result').innerHTML = `Điểm: ${total.toFixed(2)} -- Xếp loại Trung Bình`
+        } else {
+            document.getElementById('b5_result').innerHTML = `Điểm: ${total.toFixed(2)} -- Xếp loại Yếu`
+        }
+    }
+
+    function saleComission() {
+        let hoaHong = parseFloat(document.getElementById("hoa-hong").value);
+        let doanhThu = parseFloat(document.getElementById("doanh-thu").value);
+        tienHH = doanhThu * hoaHong / 100;
+        let message = ""
+
+        if (hoaHong < 0 || hoaHong > 100) {
+            message += 'Vui lòng nhập số % hoa hồng từ 0 - 100<br>';
+        }
+
+        if (doanhThu < 1) {
+            message += 'Vui lòng nhập số doanh thu > 0<br>';
+        }
+        if (message !== "") {
+            document.getElementById('b6_result').innerHTML = message;
+        } else {
+            document.getElementById('b6_result').innerHTML =
+                `Số tiền nhận được từ % hoa hồng: ${tienHH.toFixed(1)}`;
+        }
+    }
+
+    function feeCall() {
+        let phiThueBao = 25000;
+        let donGiaNoi = 600;
+        let donGiaNgoai = 800;
+
+        let phutNoiMang = parseInt(document.getElementById("noi-mang").value);
+        let phutNgoaiMang = parseInt(document.getElementById("ngoai-mang").value);
+
+        tong = phiThueBao + (phutNoiMang * donGiaNoi) + (phutNgoaiMang * donGiaNgoai);
+
+        if (phutNoiMang < 0 || phutNgoaiMang < 0) {
+            return 0;
+        } else {
+            document.getElementById('b7_result').innerHTML = `Cước phí điện thoại: ${tong}`;
+        }
+    }
+
+</script>
+</html>

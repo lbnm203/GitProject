@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Condition Structure 2</title>
+</head>
+<body>
+    <h3>Bài 1: </h3>
+    <p>Chuyển từ độ C sang độ F.</p>
+    <input type="number" id="doC" placeholder="Nhập độ C">
+    <button onclick="swapCtoF()">Tính</button><br><br>
+    <div id="b1_result"></div>
+
+    <h3>Bài 2: </h3>
+    <p>Chuyển từ mét sang feet</p>
+    <input type="number" id="m" placeholder="Nhập số mét">
+    <button onclick="swapMtoFeet()">Tính</button><br><br>
+    <div id="b2_result"></div>
+
+    <h3>Bài 3: </h3>
+    <p>Tính diện tích hình vuông khi biết cạnh a.</p>
+    <input type="number" id="a-hv" placeholder="Nhập độ dài cạnh a">
+    <button onclick="areaOfSquares()">Tính</button><br><br>
+    <div id="b3_result"></div>
+
+    <h3>Bài 4: </h3>
+    <p>Tính diện tích hình chữ nhật khi biết 02 cạnh a, b.</p>
+    <input type="number" id="a-hcn" placeholder="Nhập độ dài cạnh a">
+    <input type="number" id="b-hcn" placeholder="Nhập độ dài cạnh b">
+    <button onclick="areaOfRectangle()">Tính</button><br><br>
+    <div id="b4_result"></div>
+
+    <h3>Bài 5: </h3>
+    <p>Tính diện tích tam giác vuông khi biết 02 cạnh kề a, b.</p>
+    <input type="number" id="a-tgv" placeholder="Nhập độ dài cạnh a">
+    <input type="number" id="b-tgv" placeholder="Nhập độ dài cạnh b">
+    <button onclick="areaOfTriangle()">Tính</button><br><br>
+    <div id="b5_result"></div>
+
+    <h3>Bài 6: </h3>
+    <p>Giải phương trình bậc 1.</p>
+    <input type="number" id="a-b1" placeholder="Nhập a">
+    <input type="number" id="b-b1" placeholder="Nhập b">
+    <button onclick="linearEquation()">Tính</button><br><br>
+    <div id="b6_result"></div>
+
+    <h3>Bài 7: </h3>
+    <p>Giải phương trình bậc 2.</p>
+    <input type="number" id="a-b2" placeholder="Nhập a">
+    <input type="number" id="b-b2" placeholder="Nhập b">
+    <input type="number" id="c-b2" placeholder="Nhập c">
+    <button onclick="quadraticEquation()">Tính</button><br><br>
+    <div id="b7_result"></div>
+
+    <h3>Bài 8: </h3>
+    <p>Kiểm tra xem một số nhập vào có phải là tuổi của một người không.
+        Một số nguyên là tuổi của một người khi nhỏ 120 và lơn hơn 0.</p>
+    <input type="number" id="age" placeholder="Nhập độ dài cạnh a">
+    <button onclick="checkAge()">Kiểm tra</button><br><br>
+    <div id="b8_result"></div>
+
+    <h3>Bài 9: </h3>
+    <p>Kiểm tra xem 3 số thực (a,b,c) nhập vào có phải là cạnh của một tam giác</p>
+    <input type="number" id="a-tg" placeholder="Nhập độ dài cạnh a">
+    <input type="number" id="b-tg" placeholder="Nhập độ dài cạnh b">
+    <input type="number" id="c-tg" placeholder="Nhập độ dài cạnh c">
+    <button onclick="checkTriangle()">Kiểm tra</button><br><br>
+    <div id="b9_result"></div>
+
+    <h3>Bài 10: </h3>
+    <p>Viết chương trình tính giá điện</p>
+    <input type="number" id="sokw" placeholder="Nhập độ dài cạnh b">
+    <button onclick="costElectric()">Kiểm tra</button><br><br>
+    <div id="b10_result"></div>
+
+    <h3>Bài 11: </h3>
+    <p>Viết chương trình tính thuế thu nhập cá nhân.</p>
+    <input type="number" id="thu-nhap" placeholder="Nhập số thu nhập">
+    <input type="number" id="phu-thuoc" placeholder="Nhập số người phụ thuộc">
+    <button onclick="taxIncome()">Tính</button><br><br>
+    <div id="b11_result"></div>
+
+    <h3>Bài 12: </h3>
+    <p>Viết chương trình tính lãi ngân hàng (lãi mẹ đẻ lãi con) khi biết số tiền ban đầu,
+        số tháng cho vay và lãi xuất hàng tháng.</p>
+    <input type="number" id="tiengoc" placeholder="Nhập số tiền ban đầu">
+    <input type="number" id="sothangvay" placeholder="Nhập số tháng vay">
+    <input type="number" id="lxthang" placeholder="Nhập lãi xuất hàng tháng">
+    <button onclick="bankInterest()">Tính</button><br><br>
+    <div id="b12_result"></div>
+</body>
+<script src="bt8.js"></script>
+</html>

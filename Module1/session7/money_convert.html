@@ -51,30 +51,35 @@
         let amount = parseFloat(document.getElementById("amount").value);
         let frCurrency = document.getElementById("fr-currency").value;
         let toCurrency = document.getElementById("to-currency").value;
-        let VNtoUSD = amount * 0.04;
-        let USDtoVN = amount * 23500;
-        let VNtoCN = amount * 0.27;
-        let CNtoVN = amount * 3350;
-        let USDtoCN = amount * 7.13;
-        let CNtoUSD = amount * 0.14;
-        if (frCurrency === "VN" && toCurrency === "USD") {
-            document.getElementById("result").innerHTML = `Result: ${VNtoUSD.toFixed(2)} USD`
-        } else if (frCurrency === "VN" && toCurrency === "CN") {
-            document.getElementById("result").innerHTML = `Result: ${VNtoCN.toFixed(2)} CNY`
-        } else if (frCurrency === "VN" && toCurrency === "VN") {
-            document.getElementById("result").innerHTML = `Result: ${amount} VND`;
-        } else if (frCurrency === "USD" && toCurrency === "VN") {
-            document.getElementById("result").innerHTML = `Result: ${USDtoVN.toFixed(2)} VND`
-        } else if (frCurrency === "USD" && toCurrency === "CN") {
-            document.getElementById("result").innerHTML = `Result: ${USDtoCN.toFixed(2)} CNY`
-        } else if (frCurrency === "USD" && toCurrency === "USD") {
-            document.getElementById("result").innerHTML = `Result: ${amount} USD`;
-        } else if (frCurrency === "CN" && toCurrency === "VN") {
-            document.getElementById("result").innerHTML = `Result: ${CNtoVN.toFixed(2)} VND`
-        } else if (frCurrency === "CN" && toCurrency === "USD") {
-            document.getElementById("result").innerHTML = `Result: ${CNtoUSD.toFixed(2)} USD`
+
+        if (amount <= 0 || isNaN(amount)) {
+            document.getElementById("result").innerHTML = "Hãy nhập số tiền > 0";
         } else {
-            document.getElementById("result").innerHTML = `Result: ${amount} CNY`;
+            if (frCurrency === "VN" && toCurrency === "USD") {
+                let VNtoUSD = amount / 1000 * 0.04;
+                document.getElementById("result").innerHTML = `Result: ${VNtoUSD.toFixed(2)} USD`;
+            } else if (frCurrency === "VN" && toCurrency === "CN") {
+                let VNtoCN = amount / 1000 * 0.27;
+                document.getElementById("result").innerHTML = `Result: ${VNtoCN.toFixed(2)} CNY`;
+            } else if (frCurrency === "VN" && toCurrency === "VN") {
+                document.getElementById("result").innerHTML = `Result: ${amount} VND`;
+            } else if (frCurrency === "USD" && toCurrency === "VN") {
+                let USDtoVN = amount * 23500;
+                document.getElementById("result").innerHTML = `Result: ${USDtoVN.toFixed(2)} VND`;
+            } else if (frCurrency === "USD" && toCurrency === "CN") {
+                let USDtoCN = amount * 7.13;
+                document.getElementById("result").innerHTML = `Result: ${USDtoCN.toFixed(2)} CNY`;
+            } else if (frCurrency === "USD" && toCurrency === "USD") {
+                document.getElementById("result").innerHTML = `Result: ${amount} USD`;
+            } else if (frCurrency === "CN" && toCurrency === "VN") {
+                let CNtoVN = amount * 3350;
+                document.getElementById("result").innerHTML = `Result: ${CNtoVN.toFixed(2)} VND`;
+            } else if (frCurrency === "CN" && toCurrency === "USD") {
+                let CNtoUSD = amount * 0.14;
+                document.getElementById("result").innerHTML = `Result: ${CNtoUSD.toFixed(2)} USD`;
+            } else {
+                document.getElementById("result").innerHTML = `Result: ${amount} CNY`;
+            }
         }
     }
 </script>

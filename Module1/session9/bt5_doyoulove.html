@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Do You Love</title>
+</head>
+<style>
+    /** {*/
+    /*    margin: 0;*/
+    /*    padding: 0;*/
+    /*    box-sizing: border-box;*/
+    /*}*/
+
+    .form {
+        text-align: center;
+
+    }
+
+    button {
+        position: absolute;
+        cursor: pointer;
+        width: 20vh;
+        height: 10vh;
+        margin: 30px;
+        border-radius: 30px;
+        font-size: 1.5em;
+        font-weight: bold;
+        color: white;
+        background-color: rgb(255, 43, 173);
+    }
+
+    #yes-btn {
+        right: 50%;
+    }
+
+    button:hover {
+        background-color: #ffa4b1;
+        transform: scale(1.1);
+    }
+
+</style>
+<body>
+    <div class="form">
+        <h1>Do you love me?</h1>
+        <button id="yes-btn">Yes</button>
+        <button id="no-btn">No</button>
+    </div>
+</body>
+<script>
+
+
+    const yesBtn = document.getElementById("yes-btn");
+    const noBtn = document.getElementById("no-btn");
+
+    yesBtn.addEventListener("click", () => {
+        alert("<3");
+    });
+
+
+    noBtn.addEventListener("mouseover", () => {
+        const heightWin = window.innerHeight;
+        const widthWin = window.innerWidth;
+
+        const heightBtn = noBtn.offsetHeight;
+        const widthBtn = noBtn.offsetWidth;
+
+        const newPosLeft = Math.random() * (widthWin - widthBtn);
+        const newPosTop = Math.random() * (heightWin - heightBtn);
+
+        noBtn.style.left = newPosLeft + 'px';
+        noBtn.style.top = newPosTop + 'px';
+    });
+
+</script>
+</html>
