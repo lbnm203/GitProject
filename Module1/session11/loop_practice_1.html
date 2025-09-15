@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h3>Bài 1: Sử dụng vòng lặp để đếm từ 1 đến 100. Khi số là 99, hiển thị hộp thoại thông báo là đã hoàn thành.</h3>
+    <button onclick="showLoopFinish()">Hiển thị</button>
+    <p id="result1"></p>
+
+    <h3>Bài 2: Sử dụng hàm prompt() để lấy thông tin nhiệt độ hiện tại được nhập bởi người truy cập. Nếu nhiệt độ <br>
+        nhập vào trên 100, yêu cầu người dùng giảm nhiệt độ. Nếu nhiệt độ dưới 20, yêu cầu người dùng tăng nhiệt độ.</h3>
+    <button onclick="checkTemperature()">Kiểm tra</button>
+    <p id="result2"></p>
+
+    <h3>Bài 3: Hiển thị ra 20 số trong dãy fibonacci đầu tiên.</h3>
+    <button onclick="showFibonacci(20)">Hiển thị</button>
+    <p id="result3"></p>
+
+    <h3>Bài 4: Tìm số đầu tiên trong dãy fibonacci chia hết cho 5.</h3>
+    <button onclick="showNumDiv5Fibonacci()">Hiển thị</button>
+    <p id="result4"></p>
+</body>
+<script>
+    function showLoopFinish() {
+        let i;
+        for (i = 1; i < 100; i++) {
+            document.getElementById("result1").innerHTML += i + " ";
+
+            if (i === 99) {
+                alert('Đã hoàn thành');
+            }
+        }
+    }
+
+    function checkTemperature() {
+        let temp = +prompt("Nhập nhiệt độ");
+        if (isNaN(temp)) {
+            document.getElementById("result2").innerHTML = 'Hãy nhập đúng định dạng nhiệt độ';
+        } else if (temp > 100) {
+            document.getElementById("result2").innerHTML = 'Hãy giảm nhiệt độ';
+        } else if (temp < 20) {
+            document.getElementById("result2").innerHTML = 'Hãy tăng nhiệt độ';
+        } else {
+            document.getElementById("result2").innerHTML = 'Nhiệt độ phù hợp';
+        }
+    }
+
+    function showFibonacci(num) {
+        let a = 0, b = 1;
+        let text = a + " " + b + " ";
+        // let text = ""
+
+        for (let i = 2; i < num; i++) {
+            let next = a + b;
+            text += next + " ";
+            a = b;
+            b = next;
+        }
+
+        document.getElementById("result3").innerHTML += text;
+    }
+
+    function showNumDiv5Fibonacci(num) {
+        let a = 0, b = 1;
+        let text = a + " " + b + " ";
+
+        for (let i = 2; i < num; i++) {
+            let next = a + b;
+            text += next + " ";
+            a = b;
+            b = next;
+        }
+
+        for (num of text) {
+            if (num % 5 === 0) {
+                document.getElementById("result4").innerHTML = num;
+                break;
+            }
+        }
+    }
+
+</script>
+</html>
