@@ -14,7 +14,7 @@
 
     <h3>Bài 2:</h3>
     <p>Nhập tuổi, kiểm tra và in kết quả xem học sinh có đủ điều kiện vào học lớp 10 hay không.</p>
-    <input type="number" id="age" placeholder="Nhập số tuổi">
+    <input type="text" id="age" placeholder="Nhập số tuổi">
     <button onclick="checkAge()">Kiểm tra</button><br><br>
     <div id="b2_result"></div>
 
@@ -34,17 +34,17 @@
     <div id="b4_result"></div>
 
     <h3>Bài 5:</h3>
-    <p>Xếp loại học lực của học sinh dựa trên: [Điểm bài kiểm tra, Điểm thi giữa kỳ, Điểm thi cuối kỳ</p>
-    <input type="number" id="diem-kt" placeholder="Nhập điểm kiểm tra">
-    <input type="number" id="diem-gk" placeholder="Nhập điểm giữa kì">
-    <input type="number" id="diem-ck" placeholder="Nhập điểm cuối kì">
+    <p>Xếp loại học lực của học sinh dựa trên: [Điểm bài kiểm tra, Điểm thi giữa kỳ, Điểm thi cuối kỳ]</p>
+    <input type="text" id="diem-kt" placeholder="Nhập điểm kiểm tra">
+    <input type="text" id="diem-gk" placeholder="Nhập điểm giữa kì">
+    <input type="text" id="diem-ck" placeholder="Nhập điểm cuối kì">
     <button onclick="scoreClassifier()">Xếp loại</button><br><br>
     <div id="b5_result"></div>
 
     <h3>Bài 6: </h3>
     <p>Tính hoa hồng nhận được dựa trên mức doanh số bán hàng.</p>
-    <input type="number" id="hoa-hong" placeholder="Nhập % hoa hồng">
-    <input type="number" id="doanh-thu" placeholder="Nhập số doanh thu">
+    <input type="text" id="hoa-hong" placeholder="Nhập % hoa hồng">
+    <input type="text" id="doanh-thu" placeholder="Nhập số doanh thu">
     <button onclick="saleComission()">Tính</button><br><br>
     <div id="b6_result"></div>
 
@@ -72,7 +72,12 @@
     }
 
     function checkAge() {
-        let age = parseInt(document.getElementById("age").value);
+        let age = parseFloat(document.getElementById("age").value);
+        if (Number.isNaN(age) || age === '') {
+            document.getElementById("b2_result").innerHTML = "Hãy nhập đúng định dạng";
+            return;
+        }
+
         if (age <= 0) {
             document.getElementById("b2_result").innerHTML = "Hãy nhập tuổi lớn 0"
         } else if (age < 15) {
@@ -94,9 +99,9 @@
     }
 
     function findMax() {
-        let a = parseInt(document.getElementById("b4-a").value);
-        let b = parseInt(document.getElementById("b4-b").value);
-        let c = parseInt(document.getElementById("b4-c").value);
+        let a = parseFloat(document.getElementById("b4-a").value);
+        let b = parseFloat(document.getElementById("b4-b").value);
+        let c = parseFloat(document.getElementById("b4-c").value);
 
         if (a === b && a === c) {
             document.getElementById('b4_result').innerHTML = `Max = ${a}`
@@ -111,10 +116,26 @@
         }
     }
 
+    function checkNumber(num) {
+        if (isNaN(num)) {
+            return 0;
+        } else if (num === '') {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
+
     function scoreClassifier() {
         let diemkt = parseFloat(document.getElementById("diem-kt").value);
         let diemgk = parseFloat(document.getElementById("diem-gk").value);
         let diemck = parseFloat(document.getElementById("diem-ck").value);
+
+        if (!checkNumber(diemkt) || !checkNumber(diemgk) || !checkNumber(diemck)) {
+            document.getElementById('b5_result').innerHTML = 'Hãy nhập đúng định dạng điểm';
+            return;
+        }
+
         total = (diemkt + diemgk*2 + diemck*3) / 6
 
         if (diemkt < 0 || diemgk < 0 || diemck < 0 || diemkt > 10 || diemgk > 10 || diemck > 10 ) {
@@ -135,6 +156,12 @@
     function saleComission() {
         let hoaHong = parseFloat(document.getElementById("hoa-hong").value);
         let doanhThu = parseFloat(document.getElementById("doanh-thu").value);
+
+        if (!checkNumber(hoaHong) || !checkNumber(doanhThu)) {
+            document.getElementById('b6_result').innerHTML = 'Hãy nhập đúng định dạng';
+            return;
+        }
+
         tienHH = doanhThu * hoaHong / 100;
         let message = ""
 
@@ -149,7 +176,7 @@
             document.getElementById('b6_result').innerHTML = message;
         } else {
             document.getElementById('b6_result').innerHTML =
-                `Số tiền nhận được từ % hoa hồng: ${tienHH.toFixed(1)}`;
+                `Số tiền nhận được từ ${hoaHong}% hoa hồng: ${tienHH.toFixed(1)}`;
         }
     }
 

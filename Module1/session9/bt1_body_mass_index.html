@@ -6,16 +6,37 @@
 </head>
 <body>
     <h2>Compute BMI</h2>
-    <input type="number" id="height" placeholder="Enter height">
-    <input type="number" id="weight" placeholder="Enter weight">
+    <input type="text" id="height" placeholder="Enter height">
+    <input type="text" id="weight" placeholder="Enter weight">
     <button onclick="computeBMI()">Tính</button>
     <br><br>
     <div id="result"></div>
 </body>
 <script>
+    function checkNumber(num) {
+        if (isNaN(num)) {
+            return 0;
+        } else if (num === '') {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
+
     function computeBMI() {
         let height = parseFloat(document.getElementById('height').value);
         let weight = parseFloat(document.getElementById('weight').value);
+
+        if (height <= 0 || weight <= 0) {
+            document.getElementById('result').innerHTML = 'Vui lòng nhập chỉ số > 0';
+            return;
+        }
+
+        if (!checkNumber(height) || !checkNumber(weight)) {
+            document.getElementById('result').innerHTML = 'Vui lòng nhập đúng định dạng';
+            return;
+        }
+
         bmi = weight / (height**2);
 
         if (bmi < 18.5) {

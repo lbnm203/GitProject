@@ -13,7 +13,11 @@
 </body>
 <script>
     function checkMonth() {
-        let month = parseInt(document.getElementById("month").value);
+        let month = parseFloat(document.getElementById("month").value);
+        if (!Number.isInteger(month)) {
+            document.getElementById('result').innerHTML = 'Hãy nhập tháng là một số nguyên';
+            return;
+        }
         switch (month) {
             case 1:
             case 3:
