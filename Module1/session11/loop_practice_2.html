@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h3>Bài 1: In dãy fibonacci</h3>
+    <button onclick="showFibonacci()">Tính</button>
+    <p id="result1"></p>
+
+    <h3>Bài 2: Tính giai thừa của một số nguyên dương</h3>
+    <button onclick="factorial()">Tính</button>
+
+    <h3>Bài 3: In tam giác vuông</h3>
+    <button onclick="drawTriangle()">In</button>
+    <pre id="result2"></pre>
+
+    <h3>Bài 4: In hình chữ nhật</h3>
+    <button onclick="drawRectangle(7, 21)">In</button>
+    <pre id="result3"></pre>
+
+</body>
+<script>
+    function showFibonacci(){
+        let num = +prompt("Nhập vào một số nguyên")
+        if (Number.isNaN(num) || !Number.isInteger(num) || num < 1) {
+            alert('Hãy nhập vào một số nguyên và lớn hơn 0')
+        } else {
+            let fib1 = 0;
+            let fib2 = 1;
+            let fib_next = 0;
+            let text = fib1 + ' ' + fib2 + ' ';
+
+            for (let i = 2; i <= num; i++) {
+                fib_next = fib1 + fib2;
+                text += fib_next + ' ';
+                fib1 = fib2;
+                fib2 = fib_next;
+            }
+            document.getElementById('result1').innerHTML = text;
+        }
+    }
+
+    function factorial() {
+        let i;
+        let num = +prompt("Nhập vào số nguyên")
+        let multiply = 1;
+        if (Number.isNaN(num) || !Number.isInteger(num) || num < 0) {
+            alert('Hãy nhập vào số nguyên dương');
+        }
+
+        for (i = 1; i <= num; i++) {
+            multiply *= i;
+        }
+        alert(`${num}! = ${multiply}`);
+    }
+
+    function drawTriangle() {
+        let i;
+        let num = 5;
+        let text = '';
+        let text2 = '';
+        let text3 = '';
+        let text4 = '';
+        for (i = 1; i <= 5; i++) {
+            text += '*'.repeat(i) + '<br>';
+        }
+
+        for (i = 5; i >= 1; i--) {
+            text2 += '*'.repeat(i) + '<br>';
+        }
+
+        for (i = 1; i <= num; i++) {
+            text3 += ' '.repeat(num-i) + "*".repeat(i) + '<br>';
+        }
+
+        for (i = num; i >= 1; i--) {
+            text4 += ' '.repeat(num-i) + '*'.repeat(i) + '<br>';
+        }
+
+        document.getElementById('result2').innerHTML = text + '<br>' + text2 + '<br>' + text3 + '<br>' + text4;
+    }
+
+    function drawRectangle(rows, cols) {
+        let i, j;
+        let text = '';
+        for (i = 1; i <= rows; i++) {
+            for (j = 1; j <= cols; j++) {
+                if (i === 1 || i === rows || j === 1 || j === cols) {
+                    text += "*";
+                } else {
+                    text += " ";
+                }
+            }
+            text += "<br>";
+        }
+        document.getElementById('result3').innerHTML = text;
+    }
+</script>
+</html>
