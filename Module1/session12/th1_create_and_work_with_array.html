@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" id="num"> <br><br>
+<button onclick="addLst()">Add</button>
+<button onclick="showLst()">Display</button>
+<button onclick="revertLst()">Revert</button>
+<button onclick="findNumInList()">Find</button>
+<button onclick="findMaxinArray()">Find Max</button>
+<div id="result"></div>
+</body>
+<script>
+    let arr = Array();
+    let x = 0;
+
+    function addLst() {
+        // Phần tử được thêm vào
+        arr[x] = document.getElementById('num').value;
+        // + chỉ số
+        x++;
+    }
+
+    function showLst() {
+        let e = '';
+        for (let i = 0; i < arr.length; i++) {
+            e += 'Phần tử ' + i + ' = ' + arr[i] + '<br>'
+        }
+        document.getElementById('result').innerHTML = e;
+    }
+
+    function revertLst() {
+        let first = 0;
+        let last = arr.length - 1;
+
+        while (first < last) {
+            let b = arr[first];
+            arr[first] = arr[last];
+            arr[last] = b;
+            first++;
+            last--;
+        }
+    }
+
+    function findNumInList() {
+        let num = +prompt('Enter a number want to find');
+        let i;
+        let index = -1;
+        for (i = 0; i < arr.length; i++) {
+            if (num == arr[i]) {
+                index = i;
+            }
+        }
+        if (index > -1) {
+            alert('Phần tử ' + num + ' nằm ở vị trí ' + index)
+        } else {
+            alert('Không tìm thấy phần tử');
+        }
+    }
+
+    function findMaxinArray() {
+        let max = arr[0];
+        let index = 0;
+
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] > max) {
+                max = arr[i];
+                index = i;
+            }
+        }
+        alert('Phần tử lớn nhất = ' + max + ' ở vị trí ' + index);
+    }
+
+</script>
+</html>
