@@ -29,14 +29,17 @@
 
 <h3>Bài 5:
     Viết chương trình nhập vào 2 chuỗi, kiểm tra xem hai chuỗi có giống nhau không.</h3>
+<input type="text" id="str1">
+<input type="text" id="str2">
 <button onclick="checkTwoString()">Kiểm tra chuỗi</button>
-<div id="result6"></div>
+<div id="result5"></div>
 
 <h3>Bài 6:
     Viết chương trình nhập vào một mảng ký tự, tìm tất cả các ký tự '-' trong mảng và
     thay thế chúng bằng ký tự '_'.</h3>
+<input type="text" id="str">
 <button onclick="findCharAndReplace()">Tìm</button>
-<div id="result7"></div>
+<div id="result6"></div>
 
 </body>
 <script>
@@ -101,15 +104,33 @@
     }
 
     function checkTwoString() {
-        let str1 = prompt('Nhập chuỗi 1')
-        let str2 = prompt('Nhập chuỗi 2')
+        let str1 = document.getElementById('str1').value;
+        let str2 = document.getElementById('str2').value;
+        let text = '';
 
-        removeSpace = arr.trim().split('');
+        if (str1 === '' || str2 === '') {
+            document.getElementById('result4').innerHTML = 'Không được để trống';
+            return;
+        }
+
+        text += `Chuỗi 1: ${str1} <br> Chuỗi 2: ${str2} <br>`;
+
+        // document.getElementById('result5').innerHTML = `Chuỗi 1: ${str1} <br> Chuỗi 2: ${str2}`;
+        if (str1 === str2) {
+            document.getElementById('result5').innerHTML = `${text} Hai chuỗi giống nhau`
+        } else {
+            document.getElementById('result5').innerHTML = `${text} Hai chuỗi không giống nhau`
+        }
+
+
 
     }
 
     function findCharAndReplace() {
+        let str1 = document.getElementById('str').value;
+        let text = str1.replace(/-/g, '_');
 
+        document.getElementById('result6').innerHTML = text;
     }
 
 </script>
