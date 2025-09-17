@@ -55,6 +55,16 @@ Nâng cấp game "Hãy thử đoán xem!"
 
 </body>
 <script>
+    function checkNumber(number) {
+        if (isNaN(number)) {
+            return 0;
+        } else if (number === '') {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
+
     function showLoopFinish() {
         let i;
         for (i = 1; i < 100; i++) {
@@ -68,8 +78,9 @@ Nâng cấp game "Hãy thử đoán xem!"
 
     function checkTemperature() {
         let temp = +prompt("Nhập nhiệt độ");
-        if (isNaN(temp)) {
+        if (!checkNumber(temp)) {
             document.getElementById("result2").innerHTML = 'Hãy nhập đúng định dạng nhiệt độ';
+            return;
         } else if (temp > 100) {
             document.getElementById("result2").innerHTML = 'Hãy giảm nhiệt độ';
         } else if (temp < 20) {
@@ -171,17 +182,17 @@ Nâng cấp game "Hãy thử đoán xem!"
 
     function playRandom() {
         let minValue = +prompt("Nhập khoảng giá trị thấp nhất");
-        if (Number.isNaN(minValue)) {
+        if (!checkNumber(minValue)) {
             alert('Hãy nhập vào một số');
             return;
         }
         let maxValue = +prompt("Nhập khoảng giá trị lớn nhất");
-        if (Number.isNaN(maxValue)) {
+        if (!checkNumber(minValue)) {
             alert('Hãy nhập vào một số');
             return;
         }
         let input_num = +prompt("Hãy nhập số bạn dự đoán");
-        if (Number.isNaN(input_num)) {
+        if (!checkNumber(minValue)) {
             alert('Hãy nhập vào một số');
             return;
         }
