@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>Bài 1:
+    Viết chương trình khởi tạo mảng 2 chiều với một bộ phần tử có sẵn, sau đó in ra các phần tử trong mảng.</h3>
+<button onclick="showElementInArray()">Hiển thị</button>
+<div id="result"></div>
+
+<h3>Bài 2:
+    Viết chương trình in các ký tự trong một mảng theo thứ tự đảo ngược.</h3>
+<button onclick="printCharInArray()">In ký tự</button>
+<div id="result2"></div>
+
+<h3>Bài 3:
+    Viết chương trình khai báo một mảng ký tự và kích thước của mảng.</h3>
+<button onclick="countNumInArray()">Đếm</button>
+</body>
+<script>
+
+    function showElementInArray() {
+        /*
+        "row 0"
+        " 1"
+        " 2"
+        " 1"
+        " 24"
+        "row 1"
+    */
+        let a = [
+            [1, 2, 1, 24],
+            [8, 11, 9, 4],
+            [7, 0, 7, 27],
+            [7, 4, 28, 14],
+            [3, 10, 26, 7]
+        ];
+
+        let i, j;
+        let text = '';
+        for (i = 0; i < a.length; i++) {
+            text += 'row' + i + '<br>';
+            for (j = 0; j < a[i].length; j++) {
+                text += a[i][j] + '<br>';
+            }
+        }
+
+        document.getElementById('result').innerHTML = text;
+    }
+
+    function printCharInArray() {
+        let arr = ['c', 's', 'c', '2', '6', '1'];
+        reverseArr = arr.reverse();
+        document.getElementById('result2').innerHTML = reverseArr;
+    }
+
+    function
+
+</script>
+</html>

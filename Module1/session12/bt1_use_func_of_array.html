@@ -7,16 +7,53 @@
 <body>
 <h3>Bài 1: Nối các phần tử trong mảng thành chuỗi</h3>
 <button onclick="concatArray()">Nối phần tử</button>
-<p id="result"></p>
+<p id="result1"></p>
 
+<h3>Bài 2: Chèn dấu "-" giữa các số chẵn</h3>
+<button onclick="insertBtwEvenNum()">Chèn</button>
+<p id="result2"></p>
+
+<h3>Bài 3: Chuyển đổi chữ thường sang chữ hoa và ngược lại</h3>
+<button onclick="swapLowerToUpper()"> Chuyển đổi</button>
+<p id="result3"></p>
 
 </body>
 <script>
+
     function concatArray() {
         let myColor = ['Red', 'Green', 'Blue', 'Orange'];
         let text;
         text = myColor.join();
         document.getElementById('result').innerText = text;
+    }
+
+    function insertBtwEvenNum() {
+        // let lstNum = "025468";
+        let lstNum = prompt('Nhập vào chuỗi số')
+        let length = lstNum.length;
+        let numArr = []
+        for (let i = 0; i < length; i++) {
+            if (lstNum[i] % 2 === 0 && lstNum[i+1] % 2 === 0) {
+                numArr.push(lstNum[i] + '-');
+            } else {
+                numArr.push(lstNum[i]);
+            }
+        }
+        document.getElementById('result2').innerText = numArr.join('');
+    }
+
+    function swapLowerToUpper() {
+        let lst = prompt('');
+        let length = lst.length;
+        let text = '';
+        for (let i = 0; i < length; i++) {
+            if (lst[i] === lst[i].toLowerCase()) {
+                text += lst[i].toUpperCase();
+            } else {
+                text += lst[i].toLowerCase();
+            }
+        }
+        document.getElementById('result3').innerText = text;
     }
 
 

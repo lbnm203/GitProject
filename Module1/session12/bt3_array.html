@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Array 1</title>
+</head>
+<style>
+    body {
+        width: 50%;
+    }
+</style>
+<body>
+    <h3>Bài 1
+        Viết chương trình khởi tạo một mảng số nguyên gồm 10 phần tử. Chương trình thực hiện tính và hiển thị
+        xem có bao nhiêu số nguyên lớn hơn hoặc bằng 10.</h3>
+    <button onclick="addNum()">Thêm phần tử</button>
+    <button onclick="showNumInArray()">Hiển thị</button>
+    <div id="result1"></div>
+
+    <h3>Bài 2
+        Viết chương trình khởi tạo một mảng số nguyên gồm 10 phần tử khác nhau. Chương trình hiển thị phần tử
+        có giá trị lớn nhất trong mảng và vị trí của phần tử đó.</h3>
+    <button onclick="maxElementOfArray()">Hiển thị </button>
+    <div id="result2"></div>
+
+    <h3>Bài 3
+        Viết chương trình khởi tạo một mảng số nguyên. Hiển thị giá trị lớn nhất trong mảng đó. In ra giá trị
+        trung bình của các phần tử trong mảng.</h3>
+    <button onclick="averageElementOfArray()">Hiển thị</button>
+    <div id="result3"></div>
+
+    <h3>Bài 4
+        Viết chương trình khởi tạo hoặc nhập vào một mảng số nguyên và đảo ngược các phần tử trong mảng.</h3>
+    <button onclick="reverseArray()">Đảo ngược mảng</button>
+    <div id="result4"></div>
+
+    <h3>Bài 5
+        Viết chương trình đếm số nguyên âm trong một mảng.</h3>
+    <button onclick="countNegativeInt()">Đếm</button>
+    <div id="result5"></div>
+
+    <h3>Bài 6
+        Viết chương trình khởi tạo hoặc nhập vào một mảng số nguyên gồm 10 phần tử. Nhập hoặc tạo một phần tử
+        số nguyên V. Chương trình tìm xem V có nằm trong mảng không. <br>
+        + Nếu V thuộc mảng, in ra: "V is in the array". <br>
+        + Nếu không, in ra: "V is not in the array".</h3>
+    <button onclick="checkElementInArray()">Kiểm tra</button>
+    <div id="result6"></div>
+
+    <h3>Bài 7
+        Viết chương trình khởi tạo hoặc nhập vào một mảng số nguyên gồm 10 phần tử. Nhập hoặc tạo một phần tử
+        số nguyên V. Chương trình kiểm tra xem V có thuộc mảng đã cho không. <br>
+         + Nếu V thuộc mảng, xóa V khỏi mảng (dịch các phần tử bên phải V sang vị trí của V và gán 0 cho phần tử cuối cùng của mảng).</h3>
+    <button onclick="checkElementAndRemove()">Kiểm tra</button>
+    <div id="result7"></div>
+
+    <h3>Bài 8
+        Viết chương trình khởi tạo hoặc nhập vào một mảng số nguyên gồm 10 phần tử. Chương trình sắp xếp mảng theo
+        thứ tự giảm dần và hiển thị mảng đã được sắp xếp.</h3>
+    <button onclick="sortDecreaseArray()">Sắp xếp</button>
+    <div id="result8"></div>
+
+    <h3>Bài 9
+        Viết chương trình khởi tạo hoặc nhập vào hai mảng số nguyên gồm 10 phần tử (gọi là mảng a và b).<br>
+
+        + Tạo mảng c gồm 20 phần tử.<br>
+        + Chương trình sẽ lưu các phần tử được nối từ hai mảng b và a vào mảng c.<br>
+        + Hiển thị mảng c.</h3>
+    <button onclick="concatArray()">Hiển thị</button>
+    <div id="result9"></div>
+
+</body>
+<script>
+    function checkNumber(num) {
+        if (isNaN(num)) {
+            return 0;
+        } else if (num === '') {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
+
+    let arr1 = [];
+    function addNum() {
+        let i;
+        let numOfArr = +prompt("Nhập số lượng phần tử");
+        if (!checkNumber(numOfArr)) {
+            alert('Hãy nhập đúng định dạng');
+            return;
+        }
+        for (i = 0; i < numOfArr; i++) {
+            let number=+prompt('Nhập phần tử');
+            if (!checkNumber(number)) {
+                alert('Hãy nhập đúng định dạng');
+            }
+            arr1.push(number);
+        }
+    }
+
+    function showNumInArray() {
+        let i;
+        let count = 0;
+        let data = '';
+        for (i = 0; i < arr1.length; i++) {
+            data += 'phần tử ' + i + ': ' + arr1[i] + '<br>';
+            if(arr1[i] >= 10) {
+                count++;
+            }
+        }
+        document.getElementById('result1').innerHTML = data + 'có ' + count + ' số nguyên >= 10';
+    }
+
+    function maxElementOfArray() {
+        let num;
+        let i;
+        let arr = [];
+        for (i = 0; i < 10; i++) {
+            num = Math.floor((Math.random() * 100) + 1);
+            arr.push(num);
+        }
+
+        let max = arr[0];
+        let index;
+        for (i = 0; i < arr.length; i++) {
+            if(arr[i] > max) {
+                max = arr[i];
+                index = i;
+            }
+        }
+
+        document.getElementById('result2').innerHTML = 'Mảng: ' + arr + '<br>' + 'Phần tử lớn nhất: ' + max + ' tại vị trí' + `${index}`;
+    }
+
+    function averageElementOfArray() {
+        let num;
+        let i;
+        let arr = [];
+        for (i = 0; i < 10; i++) {
+            num = Math.floor((Math.random() * 100) + 1);
+            arr.push(num);
+        }
+
+        let max = arr[0];
+        for (i = 0; i < arr.length; i++) {
+            if(arr[i] > max) {
+                max = arr[i];
+            }
+        }
+
+        let sum = 0;
+        for (i = 0; i < arr.length; i++) {
+            sum += arr[i];
+        }
+
+        let average = sum / arr.length;
+
+        document.getElementById('result3').innerHTML =
+            'Mảng: ' + arr + '<br>' + 'Phần tử lớn nhất: ' + max + '<br>' + 'Giá trị trung bình: ' + `${average}`;
+    }
+
+    function reverseArray() {
+        let num;
+        let i;
+        let arr = [];
+        for (i = 0; i < 10; i++) {
+            num = Math.floor((Math.random() * 100) - 1);
+            arr.push(num);
+        }
+
+        document.getElementById('result4').innerHTML = "Mảng: " + arr + "<br>" + "Mảng đảo ngược: " + arr.reverse();
+    }
+
+    function countNegativeInt() {
+        let num;
+        let i;
+        let count = 0;
+        let arr = [];
+        for (i = 0; i < 10; i++) {
+            num = Math.floor((Math.random() * 200) - 100);
+            arr.push(num);
+            if(arr[i] < 0) {
+                count++;
+            }
+        }
+        document.getElementById('result5').innerHTML = "Mảng: " + arr + "<br>" + "Tổng số nguyên âm trong mảng: " + count;
+    }
+
+    function checkElementInArray() {
+        let num;
+        let i;
+        let arr = [];
+        for (i = 0; i < 10; i++) {
+            num = Math.floor((Math.random() * 200) - 100);
+            arr.push(num);
+        }
+        alert(arr)
+
+        let v = parseInt(prompt("Nhập vào số nguyên"));
+        if (!checkNumber(v)) {
+            alert('Hãy nhập đúng định dạng số nguyên');
+            return;
+        }
+
+        let found = false;
+        for (i = 0; i < arr.length; i++) {
+            if(arr[i] === v) {
+                found = true;
+                break;
+            }
+        }
+
+        if(found) {
+            alert(v + ' có trong mảng')
+        } else {
+            alert(v + ' không có trong mảng')
+        }
+    }
+
+    function checkElementAndRemove() {
+        let num;
+        let i;
+        let arr = [];
+        for (i = 0; i < 10; i++) {
+            num = Math.floor((Math.random() * 200) - 100);
+            arr.push(num);
+        }
+        alert(arr);
+
+        let v = parseInt(prompt("Nhập vào số nguyên"));
+        if (!checkNumber(v)) {
+            alert('Hãy nhập đúng định dạng số nguyên');
+            return;
+        }
+
+        for (i = 0; i < arr.length; i++) {
+            if(arr[i] === v) {
+                arr.splice(i, 1);
+                arr.push(0);
+            }
+        }
+        alert(arr);
+    }
+
+    function sortDecreaseArray() {
+        let num;
+        let i;
+        let arr = [];
+        for (i = 0; i < 10; i++) {
+            num = Math.floor((Math.random() * 200) - 100);
+            arr.push(num);
+        }
+
+        document.getElementById('result8').innerHTML = 'Mảng ban đầu: ' + arr + '<br>' + 'Mảng sắp xếp: ' + arr.sort((a, b) => b - a);
+    }
+
+    function concatArray() {
+        let i;
+        let num;
+        let arr1 = [];
+        let arr2 = [];
+        let arr3 = [];
+        for (i = 0; i < 10; i++) {
+            num = Math.floor((Math.random() * 200) - 100);
+            arr1.push(num);
+        }
+
+        for (i = 0; i < 10; i++) {
+            num = Math.floor((Math.random() * 200) - 100);
+            arr2.push(num);
+        }
+
+        for (i = 0; i < 20; i++) {
+            num = Math.floor((Math.random() * 200) - 100);
+            arr3.push(num);
+        }
+
+        arr12 = arr1.concat(arr2)
+        arr123 = arr3.concat(arr12)
+
+        document.getElementById('result9').innerHTML =
+            'Mảng A: ' + arr1 + '<br>' + 'Mảng B: ' + arr2 + '<br>' + 'Mảng C: ' + arr3 + '<br>' + 'Mảng đã nối: ' + arr123;
+
+
+
+
+    }
+</script>
+</html>

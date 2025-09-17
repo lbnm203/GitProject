@@ -31,15 +31,27 @@
     }
 
     let numbers;
-    numbers = parseInt(prompt('Enter number'));
+    numbers = parseInt(prompt('Hãy nhập vào một số'));
     if (!checkNumber(numbers)) {
         alert('Hãy nhập đúng định dạng số')
     }
 
-    if (checkPrimeNumber(numbers)) {
-        alert(`${numbers} là số nguyên tố`)
-    } else {
-        alert(`${numbers} không phải là số nguyên tố`)
+    if (numbers < 1) {
+        alert('Hãy nập số lớn hơn 0')
     }
+
+    let N = 2;
+    let count = 0;
+    let result = '';
+    while (count < numbers) {
+        if (checkPrimeNumber(N)) {
+            result += N + ' ';
+            count++;
+        }
+        N++;
+    }
+
+    document.getElementById('result').innerHTML = result;
+
 </script>
 </html>

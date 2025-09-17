@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>Từ điển</h3>
+
+    <input type="text" id="inp">
+    <button onclick="translateEfficient()">Dịch</button> <br>
+    <div id="result"></div>
+
+</body>
+<script>
+    function translateEfficient() {
+        let arr1 = ['xe máy', 'xe đạp', 'xe ô tô', 'nhà', 'thức ăn'];
+        let arr2 = ['motobike', 'bicycle', 'car', 'house', 'food'];
+        let text = document.getElementById('inp').value;
+        let data = '';
+
+        for (let i = 0; i < arr1.length; i++) {
+            if (text === arr1[i]) {
+                data = `${text} --> ` + arr2[i];
+                break;
+            } else if (text === arr2[i]) {
+                data = `${text} --> ` +arr1[i];
+                break;
+            } else {
+                data = "Không tìm thấy";
+            }
+        }
+        document.getElementById('result').innerHTML = data;
+    }
+
+</script>
+
+
+</html>
