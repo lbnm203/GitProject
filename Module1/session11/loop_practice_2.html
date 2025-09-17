@@ -29,14 +29,14 @@
         } else {
             let fib1 = 0;
             let fib2 = 1;
-            let fib_next = 0;
+            let fibNext = 0;
             let text = fib1 + ' ' + fib2 + ' ';
 
             for (let i = 2; i <= num; i++) {
-                fib_next = fib1 + fib2;
-                text += fib_next + ' ';
+                fibNext = fib1 + fib2;
+                text += fibNext + ' ';
                 fib1 = fib2;
-                fib2 = fib_next;
+                fib2 = fibNext;
             }
             document.getElementById('result1').innerHTML = text;
         }

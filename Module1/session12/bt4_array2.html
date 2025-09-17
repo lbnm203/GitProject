@@ -16,8 +16,28 @@
 <div id="result2"></div>
 
 <h3>Bài 3:
-    Viết chương trình khai báo một mảng ký tự và kích thước của mảng.</h3>
+    Viết chương trình khai báo một mảng ký tự và kích thước của mảng.<br>
+    + Yêu cầu: Đếm số ký tự số (0-9) trong mảng.
+</h3>
 <button onclick="countNumInArray()">Đếm</button>
+<div id="result3"></div>
+
+<h3>Bài 4:
+    Viết chương trình đếm số từ trong một chuỗi.</h3>
+<button onclick="countCharInArray()">Đếm từ</button>
+<div id="result4"></div>
+
+<h3>Bài 5:
+    Viết chương trình nhập vào 2 chuỗi, kiểm tra xem hai chuỗi có giống nhau không.</h3>
+<button onclick="checkTwoString()">Kiểm tra chuỗi</button>
+<div id="result6"></div>
+
+<h3>Bài 6:
+    Viết chương trình nhập vào một mảng ký tự, tìm tất cả các ký tự '-' trong mảng và
+    thay thế chúng bằng ký tự '_'.</h3>
+<button onclick="findCharAndReplace()">Tìm</button>
+<div id="result7"></div>
+
 </body>
 <script>
 
@@ -56,7 +76,41 @@
         document.getElementById('result2').innerHTML = reverseArr;
     }
 
-    function
+    function countNumInArray() {
+        let arr = ['c', 's', 'c', '2', '6', '1', 'c', 's', 'c', '2', '6', '1', 's', 's'];
+        let count = 0;
+        for (i of arr) {
+            if (!isNaN(i))
+                count++;
+        }
+        document.getElementById('result3').innerHTML = `${arr} <br> Mảng gồm ${count} ký tự số`;
+    }
+
+    function countCharInArray() {
+        // let arr = ['c', 's', 'c', '2', '6', '1', 'c', 's', 'c', '2', '6', '1', 's', 's'];
+        let arr = prompt('Nhập vào một chuỗi');
+        removeSpace = arr.trim().split('');
+        if (arr === '') {
+            document.getElementById('result4').innerHTML = 'Không được để trống';
+            return;
+        }
+        let count = 0;
+        count = arr.length;
+
+        document.getElementById('result4').innerHTML = `${arr} <br> Mảng gồm ${count} ký tự`;
+    }
+
+    function checkTwoString() {
+        let str1 = prompt('Nhập chuỗi 1')
+        let str2 = prompt('Nhập chuỗi 2')
+
+        removeSpace = arr.trim().split('');
+
+    }
+
+    function findCharAndReplace() {
+
+    }
 
 </script>
 </html>

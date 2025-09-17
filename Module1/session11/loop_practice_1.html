@@ -106,15 +106,15 @@ Nâng cấp game "Hãy thử đoán xem!"
         // Cách 2: (WHILE)
         let fib1 = 0;
         let fib2 = 1;
-        let fib_next = 0;
+        let fibNext = 0;
         let count = 2
         let text = fib1 + ' ' + fib2 + ' ';
 
         while (count < 20) {
-            fib_next = fib1 + fib2;
-            text += fib_next + " ";
+            fibNext = fib1 + fib2;
+            text += fibNext + " ";
             fib1 = fib2;
-            fib2 = fib_next;
+            fib2 = fibNext;
             count++;
         }
         document.getElementById('result3').innerHTML = text;
@@ -123,34 +123,34 @@ Nâng cấp game "Hãy thử đoán xem!"
     function showNumDiv5Fibonacci(num) {
         let fib1 = 0;
         let fib2 = 1;
-        let fib_next = 0;
+        let fibNext = 0;
 
         while (true) {
-            fib_next = fib1 + fib2;
-            if (fib_next % 5 === 0) {
-                document.getElementById('result4').innerHTML = 'Số đầu tiên chia hết cho 5: ' + fib_next;
+            fibNext = fib1 + fib2;
+            if (fibNext % 5 === 0) {
+                document.getElementById('result4').innerHTML = 'Số đầu tiên chia hết cho 5: ' + fibNext;
                 break;
             }
             fib1 = fib2;
-            fib2 = fib_next;
+            fib2 = fibNext;
         }
     }
 
     function sumOfFibonacci(num) {
         let fib1 = 0;
         let fib2 = 1;
-        let fib_next = 0;
-        let sumFit = fib1 + fib2;
+        let fibNext = 0;
+        let sumFib = fib1 + fib2;
         let count = 2;
 
         while (count < 20) {
-            fib_next = fib1 + fib2;
-            sumFit = sumFit + fib_next;
+            fibNext = fib1 + fib2;
+            sumFib = sumFib + fibNext;
             fib1 = fib2;
-            fib2 = fib_next;
+            fib2 = fibNext;
             count ++;
         }
-        document.getElementById('result5').innerHTML = sumFit;
+        document.getElementById('result5').innerHTML = sumFib;
     }
 
     function sumOfNumberDiv7() {
@@ -191,32 +191,32 @@ Nâng cấp game "Hãy thử đoán xem!"
             alert('Hãy nhập vào một số');
             return;
         }
-        let input_num = +prompt("Hãy nhập số bạn dự đoán");
+        let inputNum = +prompt("Hãy nhập số bạn dự đoán");
         if (!checkNumber(minValue)) {
             alert('Hãy nhập vào một số');
             return;
         }
 
-        if (input_num < minValue || input_num > maxValue) {
+        if (inputNum < minValue || inputNum > maxValue) {
             alert(`Hãy nhập vào số nằm trong khoảng ${minValue} - ${maxValue}`);
         }
 
         let randomNum = Math.floor(Math.random() * (maxValue - minValue) + minValue);
 
-        while (input_num !== 000) {
-            if (input_num === ramdomNum) {
-                alert(`Số bạn dự đoán: ${input_num} - Chúc Mừng Bạn Đã Dự Đoán Đúng (${randomNum}))`)
+        while (inputNum !== 000) {
+            if (inputNum === ramdomNum) {
+                alert(`Số bạn dự đoán: ${inputNum} - Chúc Mừng Bạn Đã Dự Đoán Đúng (${randomNum}))`)
                 break;
-            } else if (input_num > randomNum) {
-                alert(`Số bạn dự đoán: ${input_num} - Lớn hơn số đã dự đoán`);
-                input_num = +prompt("Hãy nhập lại số khác hoặc nhập 000 để dừng");
-                if (input_num < minValue || input_num > maxValue) {
+            } else if (inputNum > randomNum) {
+                alert(`Số bạn dự đoán: ${inputNum} - Lớn hơn số đã dự đoán`);
+                inputNum = +prompt("Hãy nhập lại số khác hoặc nhập 000 để dừng");
+                if (inputNum < minValue || inputNum > maxValue) {
                     alert(`Hãy nhập vào số nằm trong khoảng ${minValue} - ${maxValue}`);
                 }
             } else {
-                alert(`Số bạn dự đoán: ${input_num} - Bé hơn số đã dự đoán`);
-                input_num = +prompt("Hãy nhập lại số khác hoặc nhập 000 để dừng");
-                if (input_num < minValue || input_num > maxValue) {
+                alert(`Số bạn dự đoán: ${inputNum} - Bé hơn số đã dự đoán`);
+                inputNum = +prompt("Hãy nhập lại số khác hoặc nhập 000 để dừng");
+                if (inputNum < minValue || inputNum > maxValue) {
                     alert(`Hãy nhập vào số nằm trong khoảng ${minValue} - ${maxValue}`);
                 }
             }
