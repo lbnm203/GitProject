@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+</style>
+<body>
+<h3><pre>Bài 1:
+Tạo hàm alertMessage() hiển thị hộp thoại chứa chuỗi "Xin chào". Gọi hàm từ trong phần body của trang web.</pre>
+</h3>
+<button onclick="alertMessage()">Xin Chào</button>
+
+<h3><pre>Bài 2:
+Tạo hàm nhận vào một đối số dạng số, tăng giá trị của đối số lên 1 và trả về giá trị sau khi tăng. Gọi hàm từ trong
+phần body của trang web và hiển thị kết quả lên màn hình.</pre>
+</h3>
+<button onclick="increaseCount()">Hiển thị</button>
+
+<h3><pre>Bài 3:
+Tạo hàm nhận vào hai tham số:
+    + Nếu giá trị của tham số thứ nhất lớn hơn tham số thứ hai, hiển thị hộp thoại thông báo cho người dùng.
+    + Nếu giá trị của tham số thứ nhất nhỏ hơn hoặc bằng tham số thứ hai, trả về tổng của hai tham số.</pre>
+</h3>
+<input type="text" id="input1">
+<input type="text" id="input2">
+<button onclick="showMessageAndSum()">Hiển thị</button>
+
+<h3><pre>
+Bài 4:
+Thêm các hàm alert() vào những vị trí thích hợp trong đoạn mã sau để hiển thị giá trị của biến result trước
+và sau lời gọi hàm.
+</pre>
+</h3>
+<button onclick="showAlertResult()"> Hiển thị</button>
+
+<h3><pre>
+Bài 5:
+
+- Tạo một mảng gồm bảy phần tử dạng chuỗi, chứa tên các ngôi sao:
+Polaris, Aldebaran, Deneb, Vega, Altair, Dubhe, Regulus.
+
+- Tạo một mảng khác gồm bảy phần tử dạng chuỗi, chứa tên các chòm sao tương ứng:
+Ursa Minor, Taurus, Cygnus, Lyra, Aquila, Ursa Major, Leo.
+
+- Tạo một hàm nhận vào một tham số dạng chuỗi. Trong hàm, duyệt qua mảng đầu tiên để tìm tên ngôi sao.
+Nếu tìm thấy, trả lại tên chòm sao tương ứng từ mảng thứ hai.
+
+Trong phần body của trang web, sử dụng hộp thoại prompt để người dùng nhập tên ngôi sao,
+sau đó gọi hàm với thông tin đầu vào.
+</pre></h3>
+<button onclick="findStar()">Tìm</button>
+<div id="result3"></div>
+
+
+</body>
+<script>
+    function checkNumber(num) {
+        if (isNaN(num)) {
+            return 0;
+        } else if (num === '') {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
+
+    function alertMessage() {
+        return alert('Xin Chào')
+    }
+
+    let count = 0;
+    function increaseCount() {
+        count++;
+        alert(count);
+    }
+
+    function showMessageAndSum() {
+        let input1 = +document.getElementById('input1').value;
+        let input2 = +document.getElementById('input2').value;
+
+        if (!checkNumber(input1) || !checkNumber(input2)) {
+            alert('Hãy nhập đúng định dạng số');
+            return;
+        }
+
+        let sum = 0;
+        if (input1 <= input2) {
+            sum = input1 + input2;
+            alert(`Tổng 2 số = ${sum}`)
+        }
+        if (input1 > input2) {
+            alert(`${input1} > ${input2}`);
+        }
+    }
+
+    function addNumbers() {
+        firstNum = 4;
+        secondNum = 8;
+        result = firstNum + secondNum;
+        return result;
+    }
+
+    function showAlertResult() {
+        result = 0;
+        alert('Biến result trước khi gọi hàm: ' + result);
+        result = addNumbers();
+        alert('Biến result sau khi gọi hàm' + result);
+    }
+
+    function findStar() {
+        let arr1 = ['Polaris', 'Aldebaran', 'Deneb', 'Vega', 'Altair', 'Dubhe', 'Regulus'];
+        let arr2 = ['Ursa Minor', 'Taurus', 'Cygnus', 'Lyra', 'Aquila', 'Ursa Major', 'Leo'];
+
+        let data = '';
+        let text = prompt('Nhập vào chòm sao của bạn');
+        for (let i = 0; i < arr1.length; i++) {
+            if (text === arr1[i]) {
+                data = 'Chòm sao tương ứng: ' + arr2[i];
+                break;
+            } else {
+                data = 'Không tìm thấy';
+            }
+        }
+        document.getElementById('result3').innerHTML = data;
+    }
+
+
+</script>
+</html>

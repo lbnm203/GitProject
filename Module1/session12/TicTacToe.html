@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+          rel="stylesheet">
+</head>
+<style>
+    /*body {*/
+    /*    font-family: Arial, Helvetica, sans-serif;*/
+    /*}*/
+    #caro-board {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    td {
+        width: 30px;
+        height: 30px;
+        border: 1px solid black;
+        text-align: center;
+        vertical-align: middle;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    td:hover {
+        background-color: #f0f0f0;
+    }
+
+    button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px auto;
+        cursor: pointer;
+        width: 100px;
+        height: 50px;
+        background-color: #ff0123;
+        color: white;
+        font-size: 21px;
+        font-weight: bold;
+        border-radius: 30px;
+    }
+
+    button:hover {
+        background-color: #007bff;
+        color: #ffffff;
+    }
+</style>
+<body>
+<h2 style="text-align: center">CARO BOARD</h2>
+<div id="caro-board"></div>
+<button onclick="resetGame()">RESET</button>
+</body>
+<script>
+    function createEmptyMatrix(rows, cols) {
+        let i;
+        let j;
+        let matrix = [];
+        for (i = 0; i < rows; i++) {
+            let row = [];
+            for (j = 0; j < cols; j++) {
+                row.push('');
+            }
+            matrix.push(row);
+        }
+        return matrix;
+    }
+
+    function drawMatrix(matrix) {
+        let data = "<table border='1' cellspacing='0' cellpadding='10px'>";
+        let i;
+        let j;
+        for (i = 0; i < matrix.length; i++) {
+            data += '<tr>';
+            for (j = 0; j < matrix[i].length; j++) {
+                data += '<td onclick="handleClick(this)">' + matrix[i][j] + '</td>';
+            }
+            data += '</tr>';
+        }
+        data += '</table>';
+        return data;
+    }
+
+    let currentPlayer = 'X'
+
+    function handleClick(cell) {
+        if (cell.textContent === '') {
+            cell.textContent = currentPlayer;
+
+            currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+        }
+    }
+
+    function resetGame() {
+        let matrix = createEmptyMatrix(5, 5);
+        document.getElementById('caro-board').innerHTML = drawMatrix(matrix);
+        currentPlayer = 'X';
+    }
+
+
+    matrix = createEmptyMatrix(size, size);
+    document.getElementById('caro-board').innerHTML = drawMatrix(matrix);
+</script>
+</html>

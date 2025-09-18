@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3><pre>
+1. Tính bình phương:
+    - Viết hàm tính bình phương của một số bất kỳ được đưa vào.
+    - Gọi và kiểm tra hàm vừa viết.</pre>
+</h3>
+<button onclick="squareOfNum()">Tính</button>
+
+<h3><pre>
+2. Tính diện tích và chu vi hình tròn:
+    - Viết hàm tính diện tích hình tròn.
+    - Viết hàm tính chu vi hình tròn.
+    - Gọi và kiểm tra các hàm vừa viết.
+</pre>
+</h3>
+<button onclick="areaOfCircle()">Tính</button>
+<p id="result2"></p>
+
+<h3><pre>
+3. Tính giai thừa:
+    - Viết hàm tính giai thừa của một số nguyên bất kỳ được đưa vào.
+    - Gọi và kiểm tra hàm vừa viết.
+</pre>
+</h3>
+<button onclick="factorial()">Tính</button>
+<p id="result3"></p>
+
+<h3><pre>
+4. Kiểm tra ký tự số:
+    - Viết hàm kiểm tra xem ký tự nhập vào có phải là ký tự số hay không.
+    - Nếu là ký tự số, hàm trả về true; ngược lại trả về false.
+</pre>
+</h3>
+<button onclick="checkNum()">Kiểm tra</button>
+
+<h3><pre>
+5. Tìm số nguyên nhỏ nhất:
+    - Viết hàm nhận vào 3 số nguyên bất kỳ, trả về số nguyên có giá trị nhỏ nhất.
+</pre>
+</h3>
+<button onclick="findMinInt()">Tìm</button>
+
+<h3><pre>
+6. Kiểm tra số nguyên dương:
+    - Viết hàm nhận vào một số, kiểm tra xem số đó có phải là số nguyên dương không.
+    - Nếu là nguyên dương, trả về true; ngược lại trả về false.
+</pre>
+</h3>
+<button onclick="checkInt()">Kiểm tra</button>
+
+<h3><pre>
+7. Đổi chỗ hai số nguyên:
+    - Viết hàm truyền vào 2 số nguyên bất kỳ và thực hiện đổi chỗ hai số đó.
+</pre>
+</h3>
+<button onclick="swapTwoInterger()">Đổi chỗ</button>
+
+<h3><pre>
+8. Đảo ngược mảng:
+    - Viết hàm nhận vào một mảng số nguyên bất kỳ và đảo ngược mảng đó.
+</pre>
+</h3>
+<button onclick="reverseArray()">Đảo ngược</button>
+
+<h3><pre>
+9. Kiểm tra ký tự trong mảng:
+    - Viết hàm nhận vào một mảng ký tự và một ký tự bất kỳ.
+    - Kiểm tra xem ký tự đó có nằm trong mảng hay không.
+    - Nếu có, trả về số lần xuất hiện; nếu không, trả về -1.
+</pre>
+</h3>
+<button onclick="checkCharInArray()"> Kiểm tra</button>
+
+</body>
+<script>
+    const PI = 3.14159;
+
+    function checkNumber(num) {
+        if (isNaN(num)) {
+            return 0;
+        } else if (num === '') {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
+
+    function squareOfNum() {
+        let num = +prompt('Nhập vào một số')
+        if (!checkNumber(num)) {
+            alert('Hãy nhập đúng định dạng số')
+        } else {
+            return alert(`Bình phương của ${num} = ${num ** 2}`)
+        }
+    }
+
+    function areaOfCircle() {
+        let radius = +prompt('Nhập vào bán kính');
+        if (!checkNumber(radius)) {
+            document.getElementById('result2').innerHTML = 'Hãy nhập đúng định dạng số';
+            return;
+        }
+        let s;
+        let chuVi;
+        s = PI * (radius ** 2);
+        chuVi = 2 * PI * radius;
+
+        document.getElementById('result2').innerHTML = `Diện tích s = ${s} <br> Chu vi = ${chuVi}`;
+    }
+
+    function factorial() {
+        let num = +prompt('Nhập vào một số')
+        if (!checkNumber(num)) {
+            alert('Hãy nhập đúng định dạng số')
+            return;
+        }
+
+        let i;
+        let multiply = 1;
+        for (i = 1; i <= num; i++) {
+            multiply *= i;
+        }
+
+        alert(`${num}! = ${multiply}`);
+    }
+
+    function checkNum() {
+        let num = prompt('Nhập vào ký tự')
+        if (checkNumber(num)) {
+            alert(`${num} là ký tự số`)
+        } else {
+            alert(`${num} không phải là ký tự số`)
+        }
+    }
+
+    function findMinInt() {
+        let value1 = +prompt('Nhập giá trị 1');
+        if (!checkNumber(value1)) {
+            alert('Hãy nhập đúng định dạng số');
+            return;
+        }
+
+        let value2 = +prompt('Nhập giá trị 2');
+        if (!checkNumber(value2)) {
+            alert('Hãy nhập đúng định dạng số');
+            return;
+        }
+
+        let value3 = +prompt('Nhập giá trị 3');
+        if (!checkNumber(value3)) {
+            alert('Hãy nhập đúng định dạng số');
+            return;
+        }
+
+        if (value1 <= value2 && value1 <= value3) {
+            alert(`min = ${value1}`)
+            return;
+        }
+
+        if (value2 < value3) {
+            alert(`min = ${value2}`)
+        } else {
+            alert(`min = ${value3}`)
+        }
+
+    }
+
+    function checkInt() {
+        let num = +prompt('Nhập vào một số')
+        if (!checkNumber(num) || !Number.isInteger(num)) {
+            alert('Hãy nhập đúng định dạng số')
+            return;
+        }
+
+        if (num > 0) {
+            alert(`${num} là số nguyên dương`)
+        } else {
+            alert(`${num} không phải là số nguyên dương`)
+        }
+    }
+
+    function swapTwoInterger() {
+        let value1 = +prompt('Nhập vào số thứ 1')
+        let value2 = +prompt('Nhập vào số thứ 2')
+
+        let c = value1;
+        value1 = value2;
+        value2 = c;
+
+        alert(`Số sau khi đổi chỗ: value1 = ${value1} -- value2 = ${value2}`);
+    }
+
+    function reverseArray() {
+        let arr = prompt("Nhập vào một mảng số nguyên")
+        let data = [];
+        if (!checkNumber(arr)) {
+            alert('Hãy nhập vào một mảng số nguyên');
+            return;
+        }
+
+        let i;
+        let length = arr.length;
+        for (i of arr) {
+            data.push(i);
+        }
+
+        reverseArr = data.reverse();
+        alert(`Mảng sau khi đảo ngược: ${reverseArr}`);
+    }
+
+    function checkCharInArray() {
+        let text = prompt('Nhập vào chuỗi ký tự');
+        if (!text) {
+            alert('Không được để trống');
+            return;
+        }
+
+        let char = prompt('Nhập vào ký tự');
+        if (!char || char.length !== 1) {
+            alert('Vui lòng nhập đúng 1 ký tự');
+            return;
+        }
+
+        let i;
+        let count = 0;
+        for (i of text) {
+            if (char === i) {
+                count++;
+            }
+        }
+
+        if (!count) {
+            alert(`${char} không xuất hiện trong chuỗi`);
+            return -1;
+        } else {
+            alert(`${char} xuất hiện ${count} lần`);
+            return count;
+        }
+    }
+</script>
+</html>

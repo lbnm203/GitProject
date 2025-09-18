@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h3>Add New Product</h3>
+        <div class="block1">
+            <input type="text" id="add-product" placeholder="New Product">
+            <button onclick="addProduct()">Add</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <h3>Display All Product</h3>
+        <div class="header-block">
+            <p><strong>Product Name</strong></p>
+            <p id="num-of-product">0 product</p>
+        </div>
+        <div class="list-product" id="list-product">
+            <div class="empty-state">No products add yet</div>
+        </div>
+    </div>
+
+    <div id="confirmation-dialog" class="confirmation-dialog" style="display: none">
+        <div class="dialog-content">
+            <h4>Confirm Delete</h4>
+            <p id="confirm-message"></p>
+            <div class="dialog-button">
+                <button id="confirm-yes" onclick="confirmDelete()">Delete</button>
+                <button id="confirm-no" onclick="cancelDelete()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script src="script.js"></script>
+</html>

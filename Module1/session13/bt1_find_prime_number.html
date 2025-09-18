@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p id="result"></p>
+</body>
+<script>
+    function checkPrimeNumber(num) {
+        if (num < 2) {
+            return false;
+        }
+
+        for (let i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i === 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    let text = '';
+    for (let i = 2; i <= 10000; i++) {
+        if (checkPrimeNumber(i)) {
+            text += i + ' ';
+        }
+    }
+    document.getElementById('result').innerHTML = text;
+</script>
+</html>

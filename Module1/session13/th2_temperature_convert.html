@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h3>Temperature Convert</h3>
+    <label>Fahrenheit</label>
+    <input type="number" id="temperature" oninput="temperatureConvert(this.value)"> <br>
+    <label>Celsius = </label>
+    <span id="output"></span>
+</body>
+<script>
+    function temperatureConvert(temp) {
+        temp = parseFloat(temp);
+        let result = (temp - 32) / 1.8
+        document.getElementById('output').innerHTML = `${result.toFixed(2)}`;
+    }
+</script>
+</html>
