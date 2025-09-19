@@ -20,8 +20,8 @@
     }
 
     td {
-        width: 30px;
-        height: 30px;
+        width: 24px;
+        height: 24px;
         border: 1px solid black;
         text-align: center;
         vertical-align: middle;
@@ -52,60 +52,107 @@
         background-color: #007bff;
         color: #ffffff;
     }
+
+    #winner {
+        font-size: 25px;
+        text-align: center;
+        color: #2137d1;
+    }
 </style>
 <body>
 <h2 style="text-align: center">CARO BOARD</h2>
 <div id="caro-board"></div>
 <button onclick="resetGame()">RESET</button>
+<h4 id="winner"></h4>
 </body>
 <script>
     function createEmptyMatrix(rows, cols) {
-        let i;
-        let j;
         let matrix = [];
-        for (i = 0; i < rows; i++) {
-            let row = [];
-            for (j = 0; j < cols; j++) {
-                row.push('');
+        for (let i = 0; i < rows; i++) {
+            matrix[i] = [];
+            for (let j = 0; j < cols; j++) {
+                matrix[i][j] = '';
             }
-            matrix.push(row);
         }
         return matrix;
     }
 
     function drawMatrix(matrix) {
-        let data = "<table border='1' cellspacing='0' cellpadding='10px'>";
-        let i;
-        let j;
-        for (i = 0; i < matrix.length; i++) {
-            data += '<tr>';
-            for (j = 0; j < matrix[i].length; j++) {
-                data += '<td onclick="handleClick(this)">' + matrix[i][j] + '</td>';
+        let table = "<table border='1' cellspacing='0' cellpadding='10px'>";
+        for (let i = 0; i < matrix.length; i++) {
+            table += '<tr>';
+            for (let j = 0; j < matrix[i].length; j++) {
+                table += `<td onclick="handleClick(${i}, ${j})">${matrix[i][j]}</td>`;
             }
-            data += '</tr>';
+            table += '</tr>';
         }
-        data += '</table>';
-        return data;
+        table += '</table>';
+        return document.getElementById('caro-board').innerHTML = table;
     }
 
-    let currentPlayer = 'X'
+    const isWin = (matrix, x, y, currentPlayer) => {
+        let count = 1;
+        let directs = [
+            [0, 1],
+            [1, 0],
+            [1, 1],
+            [1, -1]
+        ]
 
-    function handleClick(cell) {
-        if (cell.textContent === '') {
-            cell.textContent = currentPlayer;
+        for (const [dx, dy] of directs) {
+            let rows = x + dx;
+            let cols = y + dy;
 
-            currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+            while (rows >= 0 && rows < matrix.length && cols >= 0 && cols < matrix[0].length && matrix[rows][cols] === currentPlayer) {
+                count++;
+                rows += dx;
+                cols += dy;
+            }
+
+            rows = x - dx;
+            cols = y - dy;
+            while (rows >= 0 && rows < matrix.length && cols >= 0 && cols < matrix[0].length && matrix[rows][cols] === currentPlayer) {
+                count++;
+                rows -= dx;
+                cols -= dy;
+            }
+
+            if (count >= 5) {
+                return true;
+            }
         }
+        return false;
+    }
+
+
+    let endGame = false;
+    let currentPlayer = 'X';
+
+    function handleClick(x, y) {
+        if (endGame || matrix[x][y] !== '') {
+            return;
+        }
+
+        matrix[x][y] = currentPlayer;
+        drawMatrix(matrix);
+        if (isWin(matrix, x, y, currentPlayer)) {
+            document.getElementById('winner').innerHTML = `Người chơi ${currentPlayer} thắng`;
+            document.getElementById('winner').hidden = false;
+            endGame = true;
+            return;
+        }
+        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
     }
 
     function resetGame() {
-        let matrix = createEmptyMatrix(5, 5);
-        document.getElementById('caro-board').innerHTML = drawMatrix(matrix);
+        matrix = createEmptyMatrix(10, 10);
         currentPlayer = 'X';
+        drawMatrix(matrix);
+        document.getElementById('winner').hidden = true;
+        endGame = false;
     }
 
-
-    matrix = createEmptyMatrix(size, size);
-    document.getElementById('caro-board').innerHTML = drawMatrix(matrix);
+    matrix = createEmptyMatrix(10, 10);
+    drawMatrix(matrix);
 </script>
 </html>
