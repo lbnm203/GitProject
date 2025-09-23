@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adam-Eva</title>
+</head>
+<body>
+    <h3>Adam</h3>
+    <button onclick="adamEat()">Eat</button>
+    <button onclick="adamCheckStatus()">Check Status</button>
+    <button onclick="adamCheckWeight()">Check Weight</button>
+    <button onclick="adamTalk()">Talk</button>
+
+    <h3>Eva</h3>
+    <button onclick="evaEat()">Eat</button>
+    <button onclick="evaCheckStatus()">Check Status</button>
+    <button onclick="evaCheckWeight()">Check Weight</button>
+    <button onclick="evaTalk()">Talk</button>
+</body>
+<script>
+    function Apple(weight) {
+        this.weight = weight;
+
+        this.getWeight = function () {
+            return this.weight;
+        }
+
+        this.decrease = function () {
+            if (this.weight > 0) {
+                this.weight--;
+            }
+        }
+
+        this.isEmpty = function () {
+            return this.weight <= 0;
+        }
+    }
+
+    function Human(name, gender, weight) {
+        this.name = name;
+        this.gender = gender;
+        this.weight = weight;
+
+        this.setName = function (name) {
+            this.name = name;
+        }
+
+        this.getName = function () {
+            return this.name;
+        }
+
+        this.setGender = function (gender) {
+            this.gender = gender;
+        }
+
+        this.setWeight = function (weight) {
+            this.weight = weight;
+        }
+
+        this.getWeight = function () {
+            return this.weight;
+        }
+
+        this.isMale = function () {
+            return this.gender === true;
+        }
+
+        this.checkApple = function (apple) {
+            return !apple.isEmpty()
+        }
+
+        this.eatApple = function (apple) {
+            if (!apple.isEmpty()) {
+                apple.decrease();
+                this.weight++;
+                console.log(this.name + " is eat");
+            } else {
+                console.log(this.name + " cant eat, cuz apple are gone");
+            }
+        }
+
+        this.say = function (text) {
+            text = prompt('Enter a text')
+            console.log(this.name + ' say: ' + text);
+            return text
+        }
+
+        this.checkStatus = function (apple) {
+            if (!this.checkApple(apple)) {
+                console.log('Apple is sold out');
+            } else {
+                console.log('nums of apple: ' + apple.getWeight());
+            }
+        }
+
+        this.checkWeight = function () {
+            console.log('the weight of ' + this.name + ' ' + this.weight);
+        }
+    }
+    let apple = new Apple(10);
+    let adam = new Human('Adam', 'Male', 65);
+    let eva = new Human('Eva', 'Female', 52);
+    let text;
+
+    function adamEat() {
+        adam.eatApple(apple);
+    }
+
+    function adamCheckStatus() {
+        adam.checkStatus(apple);
+    }
+
+    function adamCheckWeight() {
+        adam.checkWeight();
+    }
+
+    function adamTalk() {
+        adam.say(text);
+    }
+
+    function evaEat() {
+        eva.eatApple(apple);
+    }
+
+    function evaCheckStatus() {
+        eva.checkStatus(apple);
+    }
+
+    function evaCheckWeight() {
+        eva.checkWeight();
+    }
+
+    function evaTalk() {
+        eva.say(text)
+    }
+
+</script>
+</html>

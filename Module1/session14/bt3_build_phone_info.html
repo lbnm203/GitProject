@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mobile Demo</title>
+</head>
+<body>
+<script>
+    function Mobile(name) {
+        this.name = name;               // Tên điện thoại (để phân biệt khi gửi/nhận)
+        this.battery = 100;             // Trạng thái pin (0–100)
+        this.isOn = false;              // Trạng thái bật/tắt
+        this.draft = "";                // Tin nhắn đang soạn thảo
+        this.inbox = [];                // Hộp thư đến
+        this.sent = [];                 // Tin nhắn đã gửi
+
+        // Bật điện thoại
+        this.turnOn = function () {
+            if (!this.isOn && this.battery > 0) {
+                this.isOn = true;
+                this.consumeBattery();
+                console.log(this.name + " đã bật.");
+            }
+        }
+
+        // Tắt điện thoại
+        this.turnOff = function () {
+            if (this.isOn) {
+                this.isOn = false;
+                this.consumeBattery();
+                console.log(this.name + " đã tắt.");
+            }
+        }
+
+        // Kiểm tra trạng thái
+        this.checkStatus = function () {
+            return this.isOn ? "Bật" : "Tắt";
+        }
+
+        // Sạc pin
+        this.chargeBattery = function () {
+            if (this.battery < 100) {
+                this.battery++;
+            }
+        }
+
+        // Soạn tin nhắn
+        this.writeMessage = function (text) {
+            if (this.isUsable()) {
+                this.draft = text;
+                this.consumeBattery();
+            }
+        }
+
+        // Gửi tin nhắn tới một mobile khác
+        this.sendMessage = function (receiver) {
+            if (this.isUsable() && this.draft !== "") {
+                receiver.receiveMessage(this.draft, this);
+                this.sent.push(this.draft);
+                console.log(this.name + " đã gửi tin: " + this.draft + " → " + receiver.name);
+                this.draft = ""; // Xóa sau khi gửi
+                this.consumeBattery();
+            }
+        }
+
+        // Nhận tin nhắn từ mobile khác
+        this.receiveMessage = function (message, sender) {
+            if (this.isOn) {
+                this.inbox.push(sender.name + ": " + message);
+            }
+        }
+
+        // Xem hộp thư đến
+        this.viewInbox = function () {
+            if (this.isUsable()) {
+                this.consumeBattery();
+                return this.inbox;
+            }
+            return [];
+        }
+
+        // Xem tin nhắn đã gửi
+        this.viewSent = function () {
+            if (this.isUsable()) {
+                this.consumeBattery();
+                return this.sent;
+            }
+            return [];
+        }
+
+        // Tiêu hao pin khi sử dụng
+        this.consumeBattery = function () {
+            if (this.battery > 0) {
+                this.battery--;
+            }
+            if (this.battery <= 0) {
+                this.isOn = false; // Hết pin thì tắt máy
+            }
+        }
+
+        // Kiểm tra có thể dùng được hay không
+        this.isUsable = function () {
+            return this.isOn && this.battery > 0;
+        }
+    }
+
+    // ------------------ Demo ------------------
+    let nokia = new Mobile("Nokia");
+    let iphone = new Mobile("iPhone");
+
+    nokia.turnOn();
+    iphone.turnOn();
+
+    nokia.writeMessage("Hello iPhone!");
+    nokia.sendMessage(iphone);
+
+    console.log("Inbox iPhone:", iphone.viewInbox());
+    console.log("Sent Nokia:", nokia.viewSent());
+</script>
+</body>
+</html>

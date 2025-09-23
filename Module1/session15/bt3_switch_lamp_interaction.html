@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button onclick="turnOnSwitch()">Turn On</button>
+<button onclick="turnOffSwitch()">Turn Off</button>
+<button onclick="showStatus()">Show Status</button>
+<br><br>
+<div id="screen"></div>
+</body>
+<script>
+    function SwitchButton(status, lamp) {
+        this.status = status;
+        this.lamp = lamp;
+
+        this.getLamp = function () {
+            return this.lamp;
+        }
+
+        this.setLamp = function (lamp) {
+            this.lamp = lamp;
+        }
+
+        this.connectToLamp = function (lamp) {
+            this.lamp = lamp;
+            document.getElementById('screen').innerHTML = 'Connect To Lamp Successfully';
+        }
+
+        this.switchOff = function () {
+            if (this.lamp) {
+                this.status = false;
+                this.lamp.turnOff();
+            }
+        }
+
+        this.switchOn = function () {
+            if (this.lamp) {
+                this.status = true;
+                this.lamp.turnOn();
+            }
+        }
+    }
+
+    function ElectricLamp(status) {
+        this.status = status;
+
+        this.getStatus = function () {
+            return this.status;
+        }
+
+        this.turnOff = function () {
+            this.status = false;
+            document.getElementById('screen').innerHTML = 'Light Turn Off';
+        }
+
+        this.turnOn = function () {
+            this.status = true;
+            document.getElementById('screen').innerHTML = 'Light Turn On';
+        }
+
+        this.showStatus = function () {
+            return this.status ? 'Lamp is On' : 'Lamp is Off';
+        }
+    }
+
+    let lamp = new ElectricLamp(false);
+    let switchButton = new SwitchButton(false, null);
+    switchButton.connectToLamp(lamp);
+
+    function turnOnSwitch() {
+        switchButton.switchOn();
+    }
+
+    function turnOffSwitch() {
+        switchButton.switchOff();
+    }
+
+    function showStatus() {
+        document.getElementById('screen').innerHTML = lamp.showStatus();
+    }
+
+
+</script>
+</html>

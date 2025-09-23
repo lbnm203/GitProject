@@ -113,14 +113,12 @@ sau đó gọi hàm với thông tin đầu vào.
         let arr1 = ['Polaris', 'Aldebaran', 'Deneb', 'Vega', 'Altair', 'Dubhe', 'Regulus'];
         let arr2 = ['Ursa Minor', 'Taurus', 'Cygnus', 'Lyra', 'Aquila', 'Ursa Major', 'Leo'];
 
-        let data = '';
+        let data = 'Không tìm thấy';
         let text = prompt('Nhập vào chòm sao của bạn');
         for (let i = 0; i < arr1.length; i++) {
             if (text === arr1[i]) {
                 data = 'Chòm sao tương ứng: ' + arr2[i];
                 break;
-            } else {
-                data = 'Không tìm thấy';
             }
         }
         document.getElementById('result3').innerHTML = data;

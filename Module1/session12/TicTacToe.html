@@ -91,7 +91,6 @@
     }
 
     const isWin = (matrix, x, y, currentPlayer) => {
-        let count = 1;
         let directs = [
             [0, 1],
             [1, 0],
@@ -100,6 +99,7 @@
         ]
 
         for (const [dx, dy] of directs) {
+            let count = 1;
             let rows = x + dx;
             let cols = y + dy;
 
@@ -145,14 +145,15 @@
     }
 
     function resetGame() {
-        matrix = createEmptyMatrix(10, 10);
+        matrix = createEmptyMatrix(size, size);
         currentPlayer = 'X';
         drawMatrix(matrix);
         document.getElementById('winner').hidden = true;
         endGame = false;
     }
 
-    matrix = createEmptyMatrix(10, 10);
+    let size = 10;
+    matrix = createEmptyMatrix(size, size);
     drawMatrix(matrix);
 </script>
 </html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="temp-result"></div>
+</body>
+<script>
+    function Temperature(celcius) {
+        this.celcius = celcius;
+
+        this.swapCtoF = function () {
+            return (9 * this.celcius) / 5 + 32;
+        }
+
+        this.swapCtoK = function () {
+            return this.celcius + 273.15;
+        }
+
+        this.getInfo = function () {
+            return "Fahrenheit  = " + this.swapCtoF() + '<br> Kelvin = ' + this.swapCtoK();
+        }
+    }
+
+    let celcius = 25;
+    if (celcius < -273) {
+        alert('Enter a celcius > -273');
+    }
+
+    temperature = new Temperature(celcius);
+    document.getElementById('temp-result').innerHTML = temperature.getInfo();
+
+
+
+</script>
+</html>
