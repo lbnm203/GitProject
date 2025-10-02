@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Management</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<div class="header-block">
+    <h1>Quản Lý Sản Phẩm</h1>
+    <span onclick="goToCart()"><i class="fa-solid fa-cart-shopping"></i></span>
+</div>
+<div class="container">
+    <h2>Thông tin sản phẩm</h2>
+    <div class="block1">
+        <input type="text" id="id" placeholder="ID">
+        <input type="text" id="name" placeholder="Tên Sản Phẩm">
+        <input type="text" id="price" placeholder="Giá">
+        <input type="text" id="quantity" placeholder="Số lượng">
+<!--        <select id="status">-->
+<!--            <option value="Còn hàng">Còn hàng</option>-->
+<!--            <option value="Hết hàng">Hết hàng</option>-->
+<!--        </select>-->
+        <input type="text" id="status" placeholder="Trạng thái" readonly>
+
+
+        <button id="btn-add" onclick="addProduct()">Thêm</button>
+        <button id="btn-update" onclick="updateProduct()">Cập nhật</button>
+    </div>
+</div>
+<div class="container">
+    <h2>Danh sách sản phẩm</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Tên sản phẩm</th>
+            <th>Giá</th>
+            <th>Số lượng</th>
+            <th>Trạng thái</th>
+            <th></th>
+        </tr>
+
+        <tbody class="list-product" id="list-product">
+        </tbody>
+    </table>
+</div>
+
+<div class="dialog-confirm">
+    <div class="dialog-content">
+        <h4>Xác nhận Xóa</h4>
+        <p id="confirm-message"></p>
+        <div class="dialog-button">
+            <button id="confirm-yes" onclick="confirmDelete()">Xóa</button>
+            <button id="confirm-no" onclick="cancelDelete()">Hủy</button>
+        </div>
+    </div>
+</div>
+</body>
+<script src="Product.js"></script>
+<script src="ProductManagement.js"></script>
+<script src="script.js"></script>
+<script src="https://kit.fontawesome.com/0a99cd7bee.js" crossorigin="anonymous"></script>
+</html>
