@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exam</title>
+</head>
+<body>
+<h3>Câu 1</h3>
+<button onclick="averageElementDiv3()">Hiển thị</button>
+<div id="result1"></div>
+
+<h3>Câu 2</h3>
+<button onclick="checkPerfectNumber()">Kiểm tra</button>
+<div id="result2"></div>
+
+<h3>Câu 3</h3>
+<button onclick="showDateLeapYear()">Kiểm tra</button>
+<div id="result3"></div>
+
+<h3>Câu 4</h3>
+<button onclick="showListContructor()">Hiển thị</button>
+<br> <br>
+<div id="result4"></div>
+</body>
+
+<script>
+    function checkNumber(number) {
+        if (isNaN(number)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    function averageElementDiv3() {
+        let number = prompt('Nhập mảng cách nhau bằng dấu cách ').trim().split(/\s+/);
+        let arr = []
+
+
+        for (let i = 0; i < number.length; i++) {
+            if (!checkNumber(number[i])) {
+                document.getElementById('result1').innerHTML = 'Hãy nhập phần tử là số';
+                return;
+            }
+
+            let value = parseInt(number[i]);
+            arr.push(value);
+        }
+
+        let sum = 0;
+        let count = 0;
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] % 3 === 0) {
+                sum += arr[i];
+                count++;
+            }
+
+            if (isNaN(arr[i])) {
+                document.getElementById('result1').innerHTML = 'nhập số lượng phần tử không vượt quá 50 và > 0';
+                return
+            }
+        }
+
+        let averageNumber = sum / count;
+        document.getElementById('result1').innerHTML = `Mang: ${arr} <br> Trung binh cong: ${averageNumber}`;
+    }
+
+    function checkPerfectNumber() {
+        let sum = 0;
+        let n = +prompt('Nhập vào sô n');
+
+        if (!n) {
+            document.getElementById('result2').innerHTML = 'Không được để trống';
+            return;
+        }
+
+        if (!checkNumber(n) || n < 1) {
+            document.getElementById('result2').innerHTML = 'Hãy nhập vào số nguyên và > 0 ';
+            return;
+        }
+
+        for (let i = 0; i < n; i++) {
+            if (n % i === 0) {
+                sum += i;
+            }
+        }
+
+        if (sum === n) {
+            document.getElementById('result2').innerHTML = 'True';
+            return true;
+        } else {
+            document.getElementById('result2').innerHTML = 'False';
+            return false;
+        }
+    }
+
+    function checkLeapYear(year) {
+        if ((year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function showDateLeapYear() {
+        let date = prompt('Nhap tháng năm là số và cách nhau bằng dấu "/"')
+
+        const regex = /^(0?[1-9]|[1][0-2])\/\d{4}$/;
+
+        if (!regex.test(date)) {
+            document.getElementById('result3').innerHTML = 'Hãy nhập đúng định dạng'
+            return false;
+        }
+
+        const [month, year] = date.split('/').map(Number);
+
+
+        switch (month) {
+            case 1:
+                document.getElementById('result3').innerHTML = 31;
+                break;
+            case 2:
+                document.getElementById('result3').innerHTML = (!checkLeapYear(year)) ? 28 : 29;
+                break;
+            case 3:
+                document.getElementById('result3').innerHTML = 31;
+                break;
+            case 4:
+                document.getElementById('result3').innerHTML = 30;
+                break
+            case 5:
+                document.getElementById('result3').innerHTML = 31;
+                break;
+            case 6:
+                document.getElementById('result3').innerHTML = 30;
+                break;
+            case 7:
+                document.getElementById('result3').innerHTML = 31;
+                break;
+            case 8:
+                document.getElementById('result3').innerHTML = 31;
+                break;
+            case 9:
+                document.getElementById('result3').innerHTML = 30;
+                break;
+            case 10:
+                document.getElementById('result3').innerHTML = 31;
+                break;
+            case 11:
+                document.getElementById('result3').innerHTML = 30;
+                break;
+            case 12:
+                document.getElementById('result3').innerHTML = 31;
+                break;
+        }
+
+    }
+
+    class Contructor {
+        constructor(id, name, birth, adrress, salary, position) {
+            this.id = id;
+            this.name = name;
+            this.birth = birth;
+            this.adrress = adrress;
+            this.salary = salary;
+            this.position = position;
+        }
+
+        getID() {
+            return this.id;
+        }
+
+        getName() {
+            return this.name;
+        }
+
+        getBirth() {
+            return this.birth;
+        }
+
+        getAdrress() {
+            return this.adrress;
+        }
+
+        getSalary() {
+            return this.salary;
+        }
+
+        getPosition() {
+            return this.position;
+        }
+
+    }
+
+    let contructor1 = new Contructor(1, 'Trương Tấn B', '11-11-1998', 'Quang Nam', 2000, 'ABC')
+    let contructor2 = new Contructor(2, 'Trương Tấn A', '11-12-1997', 'Sai Gon', 2000, 'ABC')
+    let contructor3 = new Contructor(3, 'Trương Tấn C', '11-01-1998', 'Hue', 2000, 'ABC')
+
+    let arr = []
+    arr.push(contructor1, contructor2, contructor3)
+
+    function showListContructor() {
+        let text = '<h1 style="text-align: center"> Quản lý công nhân </h1>'
+        text += "<table border='1' cellspacing='0' cellpadding='20' style='display: flex ;justify-content:center; align-items: center; '><tr><th>STT</th><th>Họ và Tên</th><th>Ngày Sinh</th><th>Địa chỉ</th><th>Lương</th><th>Chức vụ</th></tr>";
+        for (let i = 0; i < arr.length; i++) {
+            text += `<tr>
+               <td>${arr[i].getID()}</td>
+               <td>${arr[i].getName()}</td>
+               <td>${arr[i].getBirth()}</td>
+               <td>${arr[i].getAdrress()}</td>
+               <td>${arr[i].getSalary()}</td>
+               <td>${arr[i].getPosition()}</td>
+             </tr>`;
+        }
+        text += "</table>";
+        document.getElementById('result4').innerHTML = text;
+    }
+
+</script>
+</html>
