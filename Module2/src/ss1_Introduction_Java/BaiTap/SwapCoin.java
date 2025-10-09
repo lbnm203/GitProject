@@ -10,6 +10,11 @@ public class SwapCoin {
         System.out.println("Enter amount to swap: ");
         float money = sc.nextFloat();
 
+        if (money <= 0) {
+            System.out.print("Enter money > 0");
+            return;
+        }
+
         System.out.println("money: " + money + " USD -> " + money * rate + " VND");
     }
 }
