@@ -7,6 +7,12 @@ public class ShowPrimeNumber {
 
         System.out.println("Enter a number: ");
         int number = sc.nextInt();
+
+        if (number <= 1) {
+            System.out.println("Enter a number greater than 1");
+            return;
+        }
+
         int count = 0;
         int n = 2;
 
