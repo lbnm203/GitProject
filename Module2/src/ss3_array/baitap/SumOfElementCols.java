@@ -47,14 +47,28 @@ public class SumOfElementCols {
             System.out.println();
         }
 
-        double sum = 0;
-        for (int j = 0; j < matrix[0].length; j++) {
-            for (int i = 0; i < matrix.length; i++) {
-                sum += matrix[i][j];
+        int targetCols;
+        while (true) {
+            try {
+                System.out.println("Enter number of columns to be searched: ");
+                targetCols = sc.nextInt();
+
+                if (targetCols >= size || targetCols < 0) {
+                    System.out.println("Columns must be greater than or equal to 0!");
+                    continue;
+                }
+                break;
+
+            } catch (NumberFormatException e) {
+                System.out.println("Enter interger only!");
             }
-            System.out.println("Sum of element in column " + j + " is: " + sum);
-            sum = 0;
         }
+
+        double sum = 0;
+        for (int i = 0; i < size; i++) {
+            sum += matrix[i][targetCols];
+        }
+        System.out.println("Sum of element in column " + targetCols + " is: " + sum);
 
 
     }
