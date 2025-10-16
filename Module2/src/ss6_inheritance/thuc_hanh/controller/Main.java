@@ -1,59 +1,79 @@
 package ss6_inheritance.thuc_hanh.controller;
 
 import ss6_inheritance.thuc_hanh.entity.*;
+import ss6_inheritance.thuc_hanh.entity.ComparableCircle;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Shape s1 = new Shape();
-        System.out.println(s1);
+//        Shape s1 = new Shape();
+//        System.out.println(s1);
+//
+//        Shape s2 = new Shape("red", false);
+//        System.out.println(s2);
+//        System.out.println("--------------------------------");
+//
+//        Circle circle = new Circle();
+//        System.out.println(circle);
+//
+//        circle = new Circle(3.5);
+//        System.out.println(circle);
+//
+//        Circle c2 = new Circle(3.5, "papari", false);
+//        System.out.println(c2);
+//        System.out.println("-------------------------------");
+//
+//        Rectangle rectangle = new Rectangle();
+//        System.out.println(rectangle);
+//
+//        rectangle = new Rectangle(3.5, 5.5);
+//        System.out.println(rectangle);
+//
+//        rectangle = new Rectangle(3.5, 5.5, "papari", false);
+//        System.out.println(rectangle);
+//        System.out.println("------------------------------------");
+//
+//        Square square = new Square();
+//        System.out.println(square);
+//
+//        square = new Square(3.5);
+//        System.out.println(square);
+//
+//        square = new Square(5.5, "papari", false);
+//        System.out.println(square);
+//        System.out.println("-------------------------------------------");
+//
+//        Scanner sc = new Scanner(System.in);
+//
+//        double side1 = inputNumber(sc, "Enter side 1: ");
+//        double side2 = inputNumber(sc, "Enter side 2: ");
+//        double side3 = inputNumber(sc, "Enter side 3: ");
+//
+//        System.out.println("Enter color");
+//        String color = sc.next();
+//
+//        Triangle triangle = new Triangle(side1, side2, side3, color);
+//        System.out.println(triangle);
 
-        Shape s2 = new Shape("red", false);
-        System.out.println(s2);
-        System.out.println("--------------------------------");
+        ComparableCircle[] circles = new ComparableCircle[3];
+        circles[0] = new ComparableCircle(3.6);
+        circles[1] = new ComparableCircle();
+        circles[2] = new ComparableCircle(3.5, "red", true);
 
-        Circle circle = new Circle();
-        System.out.println(circle);
+        System.out.println("Array before sort:");
+        for (ComparableCircle circle: circles) {
+            System.out.println(circle);
+        }
 
-        circle = new Circle(3.5);
-        System.out.println(circle);
+        Arrays.sort(circles);
 
-        Circle c2 = new Circle(3.5, "papari", false);
-        System.out.println(c2);
-        System.out.println("-------------------------------");
+        System.out.println("Array after sort:");
+        for (ComparableCircle circle: circles) {
+            System.out.println(circle);
+        }
 
-        Rectangle rectangle = new Rectangle();
-        System.out.println(rectangle);
-
-        rectangle = new Rectangle(3.5, 5.5);
-        System.out.println(rectangle);
-
-        rectangle = new Rectangle(3.5, 5.5, "papari", false);
-        System.out.println(rectangle);
-        System.out.println("------------------------------------");
-
-        Square square = new Square();
-        System.out.println(square);
-
-        square = new Square(3.5);
-        System.out.println(square);
-
-        square = new Square(5.5, "papari", false);
-        System.out.println(square);
-        System.out.println("-------------------------------------------");
-
-        Scanner sc = new Scanner(System.in);
-
-        double side1 = inputNumber(sc, "Enter side 1: ");
-        double side2 = inputNumber(sc, "Enter side 2: ");
-        double side3 = inputNumber(sc, "Enter side 3: ");
-
-        System.out.println("Enter color");
-        String color = sc.next();
-
-        Triangle triangle = new Triangle(side1, side2, side3, color);
-        System.out.println(triangle);
     }
 
     public static double inputNumber(Scanner sc, String message) {
