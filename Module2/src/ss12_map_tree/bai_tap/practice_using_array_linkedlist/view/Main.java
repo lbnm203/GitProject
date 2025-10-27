@@ -1,13 +1,13 @@
-package ss12_map_tree.bai_tap.practice_using_array_linkedlist.controller;
+package ss12_map_tree.bai_tap.practice_using_array_linkedlist.view;
 
+import ss12_map_tree.bai_tap.practice_using_array_linkedlist.controller.ProductController;
 import ss12_map_tree.bai_tap.practice_using_array_linkedlist.entity.Product;
-import ss12_map_tree.bai_tap.practice_using_array_linkedlist.service.ProductManagerLinked;
 
 import java.util.Scanner;
 
-public class LinkedMain {
+public class Main {
     public static void main(String[] args) {
-        ProductManagerLinked productLinked = new ProductManagerLinked();
+        ProductController productController = new ProductController();
         Scanner sc = new Scanner(System.in);
         int choice;
 
@@ -30,7 +30,7 @@ public class LinkedMain {
                 case 1:
                     System.out.println("Enter ID: ");
                     int id = Integer.parseInt(sc.nextLine());
-                    while (productLinked.isDuplicateId(id)) {
+                    while (productController.isDuplicateId(id)) {
                         System.out.println("ID is duplicated! Please enter again!");
                         id = Integer.parseInt(sc.nextLine());
                     }
@@ -39,13 +39,13 @@ public class LinkedMain {
                     System.out.println("Enter Price: ");
                     double price = Double.parseDouble(sc.nextLine());
 
-                    productLinked.addProduct(new Product(id, name, price));
+                    productController.addProduct(new Product(id, name, price));
                     break;
 
                 case 2:
                     System.out.println("Enter ID you want to remove: ");
                     int deleteID = Integer.parseInt(sc.nextLine());
-                    productLinked.deleteProduct(deleteID);
+                    productController.deleteProduct(deleteID);
                     break;
 
                 case 3:
@@ -55,25 +55,25 @@ public class LinkedMain {
                     String newName = sc.nextLine();
                     System.out.println("Enter new price: ");
                     double newPrice = Double.parseDouble(sc.nextLine());
-                    productLinked.editProduct(editID, newName, newPrice);
+                    productController.editProduct(editID, newName, newPrice);
                     break;
 
                 case 4:
-                    productLinked.showProducts();
+                    System.out.println(productController.getAllProducts());
                     break;
 
                 case 5:
                     System.out.println("Enter Name you want to search: ");
                     String searchName = sc.nextLine();
-                    productLinked.searchProduct(searchName);
+                    System.out.println(productController.findByName(searchName));
                     break;
 
                 case 6:
-                    productLinked.sortProductByPriceASC();
+                    productController.sortByPriceASC();
                     break;
 
                 case 7:
-                    productLinked.sortProductByPriceDESC();
+                    productController.sortByPriceDESC();
                     break;
             }
         } while (choice != 0);
