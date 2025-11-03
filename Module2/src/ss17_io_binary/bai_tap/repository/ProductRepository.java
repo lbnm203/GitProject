@@ -1,13 +1,14 @@
-package ss17_io_binary.bai_tap.service;
+package ss17_io_binary.bai_tap.repository;
 
 import ss17_io_binary.bai_tap.entity.Product;
+import ss17_io_binary.bai_tap.service.iProductService;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-
-public class ProductServiceImp implements iProductService{
+public class ProductRepository {
     private final String path = "src/ss17_io_binary/bai_tap/data/products.dat";
 
     public boolean isDuplicateId(int id) {
@@ -20,7 +21,6 @@ public class ProductServiceImp implements iProductService{
         return false;
     }
 
-    @Override
     public boolean addProduct(Product product) {
         List<Product> products = readProductsFromFile();
         if (isDuplicateId(product.getId())) {
@@ -31,53 +31,22 @@ public class ProductServiceImp implements iProductService{
         return true;
     }
 
-    @Override
-    public void displayAll() {
-        List<Product> products = readProductsFromFile();
-        if (products.isEmpty()) {
-            System.out.println("List is empty!");
-            return;
-        }
-        StringBuilder sb = new StringBuilder();
-        sb.append(String.format("%-5s %-20s %-15s %-15s %-20s \n", "ID", "Name", "Price", "Brand", "Description"));
-        sb.append("-----------------------------------------------------------------------------\n");
-        for (Product product : products) {
-            sb.append(String.format("%-5s %-20s %-15s %-15s %-20s\n",
-                    product.getId(),
-                    product.getName(),
-                    product.getPrice(),
-                    product.getBrand(),
-                    product.getDescription()));
-        }
-        System.out.println(sb);
+    public List<Product> getAllProducts() {
+        return readProductsFromFile();
     }
 
-    @Override
-    public void searchProduct(String name) {
+    public List<Product> searchProduct(String name) {
         List<Product> products = readProductsFromFile();
-        boolean isFound = false;
-        StringBuilder sb = new StringBuilder();
+        List<Product> result = new ArrayList<>();
         for (Product product : products) {
             if (product.getName().toLowerCase().contains(name.toLowerCase())) {
-                sb.append(String.format("%-5s %-20s %-15s %-15s %-20s \n", "ID", "Name", "Price", "Brand", "Description"));
-                sb.append("-----------------------------------------------------------------------------\n");
-
-                sb.append(String.format("%-5s %-20s %-15s %-15s %-20s\n",
-                        product.getId(),
-                        product.getName(),
-                        product.getPrice(),
-                        product.getBrand(),
-                        product.getDescription()));
-                isFound = true;
+                result.add(product);
             }
-            System.out.println(sb);
         }
-        if (!isFound) {
-            System.out.println("Khong tim thay san pham theo ten: " + name);
-        }
+        return result;
     }
 
-    @Override
+
     public List<Product> readProductsFromFile() {
         File file = new File(path);
         if (!file.exists()) {
@@ -96,7 +65,6 @@ public class ProductServiceImp implements iProductService{
         return new ArrayList<>();
     }
 
-    @Override
     public void writeProductsToFile(String path, List<Product> products) {
         try (FileOutputStream fos = new FileOutputStream(path);
              ObjectOutputStream oos = new ObjectOutputStream(fos)) {
@@ -108,3 +76,4 @@ public class ProductServiceImp implements iProductService{
         }
     }
 }
+

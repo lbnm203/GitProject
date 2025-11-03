@@ -1,11 +1,17 @@
 package ss17_io_binary.bai_tap.controller;
 
 import ss17_io_binary.bai_tap.entity.Product;
-import ss17_io_binary.bai_tap.service.ProductServiceImp;
+import ss17_io_binary.bai_tap.service.ProductService;
 import ss17_io_binary.bai_tap.service.iProductService;
 
+import java.util.List;
+
 public class ProductController {
-    private final iProductService productService = new ProductServiceImp();
+    private final iProductService productService = new ProductService();
+
+    public List<Product> getAllProducts() {
+        return productService.getAllProducts();
+    }
 
     public boolean isDuplicateId(int id) {
         return productService.isDuplicateId(id);
@@ -15,11 +21,7 @@ public class ProductController {
         productService.addProduct(product);
     }
 
-    public void displayAll() {
-        productService.displayAll();
-    }
-
-    public void searchProduct(String keyword) {
-        productService.searchProduct(keyword);
+    public List<Product> searchProduct(String keyword) {
+        return productService.searchProduct(keyword);
     }
 }

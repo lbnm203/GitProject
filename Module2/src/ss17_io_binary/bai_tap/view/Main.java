@@ -3,6 +3,7 @@ package ss17_io_binary.bai_tap.view;
 import ss17_io_binary.bai_tap.controller.ProductController;
 import ss17_io_binary.bai_tap.entity.Product;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -46,12 +47,18 @@ public class Main {
                     System.out.println("Thêm thành công");
                     break;
                 case 2:
-                    controller.displayAll();
+                    List<Product> listProduct = controller.getAllProducts();
+                    displayAll(listProduct);
                     break;
                 case 3:
                     System.out.println("Nhập tên sản phẩm muốn tìm kiếm: ");
                     String nameSearch = sc.nextLine();
-                    controller.searchProduct(nameSearch);
+                    List<Product> productName = controller.searchProduct(nameSearch);
+                    if (productName.isEmpty()) {
+                        System.out.println("Không tìm thấy sản phẩm");
+                    } else {
+                        displayAll(productName);
+                    }
                     break;
                 case 0:
                     sc.close();
@@ -63,4 +70,22 @@ public class Main {
         } while (choice != 0);
     }
 
+    public static void displayAll(List<Product> products) {
+        if (products.isEmpty()) {
+            System.out.println("List is empty!");
+            return;
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format("%-5s %-20s %-15s %-15s %-20s \n", "ID", "Name", "Price", "Brand", "Description"));
+        sb.append("-----------------------------------------------------------------------------\n");
+        for (Product product : products) {
+            sb.append(String.format("%-5s %-20s %-15s %-15s %-20s\n",
+                    product.getId(),
+                    product.getName(),
+                    product.getPrice(),
+                    product.getBrand(),
+                    product.getDescription()));
+        }
+        System.out.println(sb);
+    }
 }

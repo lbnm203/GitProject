@@ -7,9 +7,7 @@ import java.util.List;
 public interface iProductService {
     boolean isDuplicateId(int id);
     boolean addProduct(Product product);
-    void displayAll();
-    void searchProduct(String name);
-    List<Product> readProductsFromFile();
+    List<Product> getAllProducts();
+    List<Product> searchProduct(String name);
 
-    void writeProductsToFile(String path, List<Product> products);
 }
