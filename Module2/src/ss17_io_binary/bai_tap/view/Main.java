@@ -2,12 +2,14 @@ package ss17_io_binary.bai_tap.view;
 
 import ss17_io_binary.bai_tap.controller.ProductController;
 import ss17_io_binary.bai_tap.entity.Product;
+import ss17_io_binary.bai_tap.service.ProductService;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
     private static final ProductController controller = new ProductController();
+    private static final ProductService service = new ProductService();
     private static final Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -25,7 +27,7 @@ public class Main {
                 case 1:
                     System.out.print("Nhập ID: ");
                     int id = Integer.parseInt(sc.nextLine());
-                    while (controller.isDuplicateId(id)) {
+                    while (service.isDuplicateId(id)) {
                         System.out.println("ID đã trùng! Hãy nhập lại!");
                         id = Integer.parseInt(sc.nextLine());
                     }

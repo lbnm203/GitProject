@@ -11,21 +11,8 @@ import java.util.List;
 public class ProductRepository {
     private final String path = "src/ss17_io_binary/bai_tap/data/products.dat";
 
-    public boolean isDuplicateId(int id) {
-        List<Product> products = readProductsFromFile();
-        for (Product product : products) {
-            if (product.getId() == id) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public boolean addProduct(Product product) {
         List<Product> products = readProductsFromFile();
-        if (isDuplicateId(product.getId())) {
-            return false;
-        }
         products.add(product);
         writeProductsToFile(path, products);
         return true;
