@@ -1,6 +1,7 @@
 package product_selling.view;
 
 import product_selling.common.validate.Validate;
+import product_selling.controller.CustomerController;
 import product_selling.controller.ProductController;
 import product_selling.entity.Bag;
 import product_selling.entity.Product;
@@ -11,32 +12,41 @@ import java.util.List;
 
 public class MainMenu {
     private static final ProductController controller = new ProductController();
+    private static final CustomerController customerController = new CustomerController();
 
     public static void mainMenu() {
         int choice;
-        showMenu();
         while (true) {
+            showMenu();
             choice = Validate.inputInteger("lựa chọn của bạn");
             switch (choice) {
                 case 1 -> {
                     List<Product> listProduct = controller.getAllProducts();
                     displayAll(listProduct);
                 }
+
                 case 2 -> {
-                    return;
+                    int id = Validate.inputInteger("Nhập ID sản phẩm muốn thêm: ");
+                    Product product = controller.findById(id);
+                    if (product == null) {
+                        System.out.println("Không tìm thấy sản phẩm có ID: " + id);
+                        return;
+                    }
+                    double quantity = Validate.inputDouble("Nhập số lượng muốn thêm: ");
+                    customerController.addToCart(id, quantity);
+                    System.out.println("Đã thêm sản phẩm vào giỏ hàng!");
                 }
-                case 3 -> {
-                    return;
-                }
-                case 4 -> {
-                    return;
-                }
-                case 5 -> AdminMenu.adminMenu();
+
+                case 3 -> CartMenu.cartMenu();
+
+                case 4 -> AdminMenu.adminMenu();
 
                 case 0 -> {
                     System.out.println("Tạm biệt!");
                     System.exit(0);;
                 }
+
+                default -> System.out.println("Yêu cầu không hợp lệ, hãy nhập lại!");
             }
         }
 
@@ -44,12 +54,11 @@ public class MainMenu {
 
     public static void showMenu() {
         System.out.println("""
-        ===================MENU===================
+        ================MENU CHÍNH=================
           1. Hiển thị danh sách mặt hàng            
           2. Thêm mặt hàng vào giỏ hàng                 
-          3. Xem giỏ hàng                      
-          4. Thanh toán                        
-          5. [ADMIN] Quản lý sản phẩm          
+          3. Xem giỏ hàng                                            
+          4. [ADMIN] Quản lý sản phẩm          
           0. Thoát                             
         ==========================================
         """);

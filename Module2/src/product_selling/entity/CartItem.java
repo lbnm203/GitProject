@@ -9,6 +9,22 @@ public class CartItem {
         this.quantity = quantity;
     }
 
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
     public double getTotalPrice() {
         return product.getPrice() * quantity;
     }
@@ -16,5 +32,9 @@ public class CartItem {
     @Override
     public String toString() {
         return String.format("%s x %d = %.2f", product, quantity, getTotalPrice());
+    }
+
+    public String toCsv() {
+        return product.toCsv() + "," + quantity;
     }
 }

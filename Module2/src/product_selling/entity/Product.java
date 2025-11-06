@@ -7,7 +7,7 @@ public class Product {
     private String name;
     private String collection;
     private double price;
-    protected final ProductType type;
+    protected ProductType type;
 
     public Product(int id, String name, String collection, double price, ProductType type) {
         this.id = id;
@@ -15,6 +15,13 @@ public class Product {
         this.collection = collection;
         this.price = price;
         this.type = type;
+    }
+
+    public Product(int id, String name, String collection, double price) {
+        this.id = id;
+        this.name = name;
+        this.collection = collection;
+        this.price = price;
     }
 
     public ProductType getType() {

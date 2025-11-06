@@ -67,12 +67,32 @@ public class ProductRepository {
 
     public void editProduct(int id, String name, String collection, double price) {
         List<Product> products = readFile();
-        for (Product product : products) {
-            if (product.getId() == id) {
-                product.setName(name);
-                product.setCollection(collection);
-                product.setPrice(price);
+        boolean found = false;
+
+        for (Product p : products) {
+            if (p.getId() == id) {
+                p.setName(name);
+                p.setCollection(collection);
+                p.setPrice(price);
+                found = true;
+                break;
             }
         }
+
+        if (found) {
+            writeFile(products, false);
+        } else {
+            System.out.println("Không tìm thấy sản phẩm có ID: " + id);
+        }
+    }
+
+    public Product getProductById(int id) {
+        List<Product> products = readFile();
+        for (Product product : products) {
+            if (product.getId() == id) {
+                return product;
+            }
+        }
+        return null;
     }
 }

@@ -39,4 +39,11 @@ public class ProductAdminService implements iProductAdminService{
     public void editProduct(int id, String name, String collection, double price) {
         repository.editProduct(id, name, collection, price);
     }
+
+    @Override
+    public Product findById(int id) {
+        return repository.getProductById(id);
+    }
+
+
 }

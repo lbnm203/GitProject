@@ -28,4 +28,8 @@ public class ProductController {
         return service.isDuplicateId(id);
     }
 
+    public Product findById(int id){
+        return service.findById(id);
+    }
+
 }

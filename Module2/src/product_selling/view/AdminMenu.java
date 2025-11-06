@@ -1,4 +1,5 @@
 package product_selling.view;
+
 import product_selling.common.exception.IdDuplicatedException;
 import product_selling.common.validate.Validate;
 import product_selling.controller.ProductController;
@@ -13,9 +14,9 @@ public class AdminMenu {
     private static final ProductController controller = new ProductController();
 
     public static void adminMenu() {
-        showMenuAdmin();
         int choiceAdmin;
         while (true) {
+            showMenuAdmin();
             choiceAdmin = Validate.inputInteger("lựa chọn của bạn");
             switch (choiceAdmin) {
                 case 1 -> {
@@ -28,10 +29,44 @@ public class AdminMenu {
                     System.out.println("Thêm thành công");
                 }
                 case 3 -> {
-                    return;
+                    int deleteID = Validate.inputInteger("ID muốn xóa: ");
+                    if (confirmDelete(deleteID)) {
+                        controller.deleteProduct(deleteID);
+                        System.out.println("Xóa thành công!");
+                    } else {
+                        System.out.println("Hủy thao tác xóa!");
+                    }
                 }
                 case 4 -> {
-                    return;
+                    int editID = Validate.inputInteger("ID cần sửa: ");
+                    Product product = controller.findById(editID);
+
+                    if (product == null) {
+                        System.out.println("Không tìm thấy sản phẩm có ID: " + editID);
+                        break;
+                    }
+
+                    System.out.println("Thông tin sản phẩm cần chỉnh sửa: ");
+                    displayOne(product);
+
+                    Scanner sc = new Scanner(System.in);
+                    System.out.println("Nhập tên mới: ");
+                    String newName = sc.nextLine().trim();
+
+                    System.out.println("Nhập loại mặt hàng mới: ");
+                    String newCollection = sc.nextLine().trim();
+
+                    double newPrice = Validate.inputDouble("Nhập giá mới: ");
+
+                    if (product instanceof Bag) {
+                        int newItems = Validate.inputInteger("Nhập số lượng trong bao: ");
+                    } else if (product instanceof Tarp) {
+                        double newMeters = Validate.inputDouble("Nhập tổng số mét bạt: ");
+                    }
+
+                    controller.editProduct(editID, newName, newCollection, newPrice);
+                    System.out.println("Cập nhật thành công");
+
                 }
                 case 0 -> MainMenu.mainMenu();
                 default -> System.out.println("Yêu cầu không hợp lệ, hãy nhập lại!");
@@ -41,7 +76,7 @@ public class AdminMenu {
 
     public static void showMenuAdmin() {
         System.out.println("""
-                ================MENU ADMIN================
+                ============MENU QUẢN TRỊ VIÊN============
                   1. Hiển thị danh sách mặt hàng
                   2. Thêm mặt hàng mới
                   3. Xóa mặt hàng
@@ -110,12 +145,54 @@ public class AdminMenu {
             int numberOfItems = Validate.inputInteger("Số lượng sản phẩm trong bao");
             return new Bag(id, name, collection, price, numberOfItems);
         } else if (type.equalsIgnoreCase("Bat")) {
-            double numberOfMeters = Validate.inputDouble("Số mét trong bạt");
+            double numberOfMeters = Validate.inputDouble("Số lượng tổng mét bạt");
             return new Tarp(id, name, collection, price, numberOfMeters);
         } else {
             System.out.println("Loại không hợp lệ. Mặc định tạo sản phẩm Bao.");
-            int numberOfItems = Validate.inputInteger("Số lượng sản phẩm trong bao");
+            int numberOfItems = Validate.inputInteger("Số lượng tổng có trong bao");
             return new Bag(id, name, collection, price, numberOfItems);
         }
+    }
+
+    public static boolean confirmDelete(int id) {
+        Product product = controller.findById(id);
+        if (product == null) {
+            System.out.println("Không tìm thấy sản phẩm có ID: " + id);
+            return false;
+        }
+
+        System.out.println("Bạn muốn xóa sẩn phẩm: ");
+        displayOne(product);
+
+        System.out.println("Bạn có chắc muốn xóa sản phẩm trên không? (y/n)");
+        Scanner sc = new Scanner(System.in);
+        String choice = sc.nextLine().trim().toLowerCase();
+
+        return choice.equals("y") || choice.equals("yes");
+    }
+
+    public static void displayOne(Product product) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format("%-10s %-5s %-20s %-20s %-15s %-15s\n",
+                "Type", "ID", "Name", "Collection", "Price", "NumOfProducts"));
+        sb.append("--------------------------------------------------------------------------------------------\n");
+
+
+        String numOfProduct = "";
+        if (product instanceof Bag) {
+            numOfProduct = String.valueOf(((Bag) product).getNumberOfItems());
+        } else if (product instanceof Tarp) {
+            numOfProduct = String.valueOf(((Tarp) product).getNumberOfMeters());
+        }
+
+        sb.append(String.format("%-10s %-5s %-20s %-20s %-15.2f %-15s\n",
+                product.getType(),
+                product.getId(),
+                product.getName(),
+                product.getCollection(),
+                product.getPrice(),
+                numOfProduct));
+
+        System.out.println(sb);
     }
 }
