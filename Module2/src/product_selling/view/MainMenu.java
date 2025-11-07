@@ -26,6 +26,8 @@ public class MainMenu {
                 }
 
                 case 2 -> {
+                    List<Product> listProduct = controller.getAllProducts();
+                    displayAll(listProduct);
                     int id = Validate.inputInteger("Nhập ID sản phẩm muốn thêm: ");
                     Product product = controller.findById(id);
                     if (product == null) {
@@ -34,7 +36,6 @@ public class MainMenu {
                     }
                     double quantity = Validate.inputDouble("Nhập số lượng muốn thêm: ");
                     customerController.addToCart(id, quantity);
-                    System.out.println("Đã thêm sản phẩm vào giỏ hàng!");
                 }
 
                 case 3 -> CartMenu.cartMenu();
@@ -76,14 +77,14 @@ public class MainMenu {
         sb.append("--------------------------------------------------------------------------------------------\n");
 
         for (Product product : products) {
-            String numOfProduct = "";
-            if (product instanceof Bag) {
-                numOfProduct = String.valueOf(((Bag) product).getNumberOfItems());
-            } else if (product instanceof Tarp) {
-                numOfProduct = String.valueOf(((Tarp) product).getNumberOfMeters());
+            double numOfProduct = 0;
+            if (product instanceof Bag bag) {
+                numOfProduct = bag.getNumberOfItems();
+            } else if (product instanceof Tarp tarp) {
+                numOfProduct = tarp.getNumberOfMeters();
             }
 
-            sb.append(String.format("%-10s %-5s %-20s %-20s %-15.2f %-15s\n",
+            sb.append(String.format("%-10s %-5s %-20s %-20s %-15.2f %-15.2f\n",
                     product.getType(),
                     product.getId(),
                     product.getName(),

@@ -36,8 +36,13 @@ public class ProductAdminService implements iProductAdminService{
     }
 
     @Override
-    public void editProduct(int id, String name, String collection, double price) {
-        repository.editProduct(id, name, collection, price);
+    public void editProduct(int id, String name, String collection, double price, double stock) {
+        repository.editProduct(id, name, collection, price, stock);
+    }
+
+    @Override
+    public void updateStock(int id, int newQuantity) {
+        repository.updateStock(id, newQuantity);
     }
 
     @Override

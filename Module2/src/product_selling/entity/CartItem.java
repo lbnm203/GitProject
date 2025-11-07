@@ -2,9 +2,9 @@ package product_selling.entity;
 
 public class CartItem {
     private Product product;
-    private int quantity;
+    private double quantity;
 
-    public CartItem(Product product, int quantity) {
+    public CartItem(Product product, double quantity) {
         this.product = product;
         this.quantity = quantity;
     }
@@ -17,11 +17,11 @@ public class CartItem {
         this.product = product;
     }
 
-    public int getQuantity() {
+    public double getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(double quantity) {
         this.quantity = quantity;
     }
 

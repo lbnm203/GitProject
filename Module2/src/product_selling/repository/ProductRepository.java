@@ -57,6 +57,7 @@ public class ProductRepository {
         List<Product> products = readFile();
         products.add(product);
         writeFile(products, false);
+        System.out.println("Thêm thành công!");
     }
 
     public void deleteProduct(int id) {
@@ -65,7 +66,7 @@ public class ProductRepository {
         writeFile(products, false);
     }
 
-    public void editProduct(int id, String name, String collection, double price) {
+    public void editProduct(int id, String name, String collection, double price, double stock) {
         List<Product> products = readFile();
         boolean found = false;
 
@@ -74,6 +75,13 @@ public class ProductRepository {
                 p.setName(name);
                 p.setCollection(collection);
                 p.setPrice(price);
+
+                if (p instanceof Bag bag) {
+                    bag.setNumberOfItems((int) stock);
+                } else if (p instanceof Tarp tarp) {
+                    tarp.setNumberOfMeters(stock);
+                }
+
                 found = true;
                 break;
             }
@@ -81,6 +89,7 @@ public class ProductRepository {
 
         if (found) {
             writeFile(products, false);
+            System.out.println("Cập nhật sản phẩm ID " + id + " thành công!");
         } else {
             System.out.println("Không tìm thấy sản phẩm có ID: " + id);
         }
@@ -94,5 +103,26 @@ public class ProductRepository {
             }
         }
         return null;
+    }
+
+    public void updateStock(int id, int newStock) {
+        List<Product> products = readFile();
+        boolean found = false;
+
+        for (Product product : products) {
+            if (product.getId() == id) {
+                found = true;
+                if (product instanceof Bag bag) {
+                    bag.setNumberOfItems((int) newStock);
+                } else if (product instanceof Tarp tarp) {
+                    tarp.setNumberOfMeters(newStock);
+                }
+                break;
+            }
+
+        }
+        if (found) {
+            writeFile(products, false);
+        }
     }
 }

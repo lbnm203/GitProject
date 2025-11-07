@@ -7,7 +7,7 @@ public class CustomerService implements iCustomerService{
     private final CustomerRepository repository = new CustomerRepository();
 
     @Override
-    public void addToCart(int productId, int quantity) {
+    public void addToCart(int productId, double quantity) {
         repository.addProduct(productId, quantity);
     }
 }

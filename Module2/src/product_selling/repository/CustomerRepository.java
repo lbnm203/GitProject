@@ -55,7 +55,7 @@ public class CustomerRepository {
                 String name = data[1];
                 String collection = data[2];
                 double price = Double.parseDouble(data[3]);
-                int quantity = Integer.parseInt(data[4]);
+                double quantity = Double.parseDouble(data[4]);
 
                 Product product = new Product(id, name, collection, price);
                 items.add(new CartItem(product, quantity));
@@ -69,22 +69,30 @@ public class CustomerRepository {
     }
 
     private static void writeFile(List<CartItem> items, boolean append) {
-        try (FileWriter fileWriter = new FileWriter(path, append);
-             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(path, append))) {
             for (CartItem item : items) {
-                bufferedWriter.write(item.toCsv());
-                bufferedWriter.newLine();
+                Product p = item.getProduct();
+                String line = String.join(",",
+                        String.valueOf(p.getId()),
+                        p.getName(),
+                        p.getCollection(),
+                        String.valueOf(p.getPrice()),
+                        String.valueOf(item.getQuantity())
+                );
+                bw.write(line);
+                bw.newLine();
             }
+            bw.flush();
         } catch (IOException e) {
-            System.out.println("Lỗi ghi file");
+            System.out.println("Lỗi ghi file: " + e.getMessage());
         }
     }
 
-    public void addProduct(int productId, int quantity) {
-        List<Product> allProducts = readFile();
+    public void addProduct(int productId, double quantity) {
+        List<Product> products = readFile();
         Product found = null;
 
-        for (Product p : allProducts) {
+        for (Product p : products) {
             if (p.getId() == productId) {
                 found = p;
                 break;
@@ -96,21 +104,44 @@ public class CustomerRepository {
             return;
         }
 
-        List<CartItem> cart = readCartFile();
+        double stock = 0;
+        if (found instanceof Bag bag) {
+            stock = bag.getNumberOfItems();
+        } else if (found instanceof Tarp tarp) {
+            stock = tarp.getNumberOfMeters();
+        }
 
-        // Nếu đã có sản phẩm trong giỏ -> tăng số lượng
+        if (quantity > stock) {
+            System.out.println("Không đủ hàng! Chỉ còn " + stock);
+            return;
+        }
+
+        List<CartItem> cart = readCartFile();
+        double newTotal;
+
         boolean existed = false;
         for (CartItem item : cart) {
             if (item.getProduct().getId() == productId) {
-                item.setQuantity(item.getQuantity() + quantity);
+                newTotal = item.getQuantity() + quantity;
+                if (newTotal > stock) {
+                    System.out.println("Không đủ hàng! Số sản phẩm còn lại " + stock + " (Đã có " + item.getQuantity() + " trong giỏ hàng)");
+                    return;
+                }
+
+                item.setQuantity(newTotal);
                 existed = true;
                 break;
             }
         }
 
-        // Nếu chưa có -> thêm mới
         if (!existed) {
+            if (quantity > stock) {
+                System.out.println("Không đủ hàng! Chỉ còn " + stock);
+                return;
+            }
+
             cart.add(new CartItem(found, quantity));
+            System.out.println("Đã thêm sản phẩm vào giỏ hàng!");
         }
 
         writeFile(cart, false);

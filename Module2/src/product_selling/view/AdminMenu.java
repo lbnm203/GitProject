@@ -57,16 +57,15 @@ public class AdminMenu {
                     String newCollection = sc.nextLine().trim();
 
                     double newPrice = Validate.inputDouble("Nhập giá mới: ");
+                    double newStock = 0;
 
                     if (product instanceof Bag) {
-                        int newItems = Validate.inputInteger("Nhập số lượng trong bao: ");
+                        newStock = Validate.inputInteger("Nhập số lượng trong bao: ");
                     } else if (product instanceof Tarp) {
-                        double newMeters = Validate.inputDouble("Nhập tổng số mét bạt: ");
+                        newStock = Validate.inputDouble("Nhập tổng số mét bạt: ");
                     }
 
-                    controller.editProduct(editID, newName, newCollection, newPrice);
-                    System.out.println("Cập nhật thành công");
-
+                    controller.editProduct(editID, newName, newCollection, newPrice, newStock);
                 }
                 case 0 -> MainMenu.mainMenu();
                 default -> System.out.println("Yêu cầu không hợp lệ, hãy nhập lại!");
@@ -98,14 +97,14 @@ public class AdminMenu {
         sb.append("--------------------------------------------------------------------------------------------\n");
 
         for (Product product : products) {
-            String numOfProduct = "";
-            if (product instanceof Bag) {
-                numOfProduct = String.valueOf(((Bag) product).getNumberOfItems());
-            } else if (product instanceof Tarp) {
-                numOfProduct = String.valueOf(((Tarp) product).getNumberOfMeters());
+            double numOfProduct = 0;
+            if (product instanceof Bag bag) {
+                numOfProduct = bag.getNumberOfItems();
+            } else if (product instanceof Tarp tarp) {
+                numOfProduct = tarp.getNumberOfMeters();
             }
 
-            sb.append(String.format("%-10s %-5s %-20s %-20s %-15.2f %-15s\n",
+            sb.append(String.format("%-10s %-5s %-20s %-20s %-15.2f %-15.2f\n",
                     product.getType(),
                     product.getId(),
                     product.getName(),
@@ -178,14 +177,14 @@ public class AdminMenu {
         sb.append("--------------------------------------------------------------------------------------------\n");
 
 
-        String numOfProduct = "";
-        if (product instanceof Bag) {
-            numOfProduct = String.valueOf(((Bag) product).getNumberOfItems());
-        } else if (product instanceof Tarp) {
-            numOfProduct = String.valueOf(((Tarp) product).getNumberOfMeters());
+        double numOfProduct = 0;
+        if (product instanceof Bag bag) {
+            numOfProduct = bag.getNumberOfItems();
+        } else if (product instanceof Tarp tarp) {
+            numOfProduct = tarp.getNumberOfMeters();
         }
 
-        sb.append(String.format("%-10s %-5s %-20s %-20s %-15.2f %-15s\n",
+        sb.append(String.format("%-10s %-5s %-20s %-20s %-15.2f %-15.2f\n",
                 product.getType(),
                 product.getId(),
                 product.getName(),
