@@ -8,6 +8,11 @@ public class Tarp extends Product{
         this.numberOfMeters = numberOfMeters;
     }
 
+    public Tarp(int id, String name, String collection, double price, double numberOfMeters, String description) {
+        super(id, name, collection, price, ProductType.Bat, description);
+        this.numberOfMeters = numberOfMeters;
+    }
+
     public double getNumberOfMeters() {
         return numberOfMeters;
     }
@@ -25,6 +30,6 @@ public class Tarp extends Product{
     public String toCsv() {
         return String.join(",", "Bat",
                 String.valueOf(getId()), getName(), getCollection(), String.valueOf(getPrice()),
-                String.valueOf(numberOfMeters));
+                String.valueOf(numberOfMeters), getDescription());
     }
 }

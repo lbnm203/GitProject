@@ -9,6 +9,7 @@ import product_selling.entity.Tarp;
 
 
 import java.util.List;
+import java.util.Scanner;
 
 public class MainMenu {
     private static final ProductController controller = new ProductController();
@@ -21,26 +22,27 @@ public class MainMenu {
             choice = Validate.inputInteger("lựa chọn của bạn");
             switch (choice) {
                 case 1 -> {
-                    List<Product> listProduct = controller.getAllProducts();
-                    displayAll(listProduct);
+                    ProductDetailMenu.productMenu();
                 }
 
-                case 2 -> {
-                    List<Product> listProduct = controller.getAllProducts();
-                    displayAll(listProduct);
-                    int id = Validate.inputInteger("Nhập ID sản phẩm muốn thêm: ");
-                    Product product = controller.findById(id);
-                    if (product == null) {
-                        System.out.println("Không tìm thấy sản phẩm có ID: " + id);
-                        return;
+                case 2 -> CartMenu.cartMenu();
+
+                case 3 -> {
+                    Scanner sc = new Scanner(System.in);
+                    System.out.println("========== ĐĂNG NHẬP ADMIN ==========");
+                    System.out.print("Nhập tài khoản: ");
+                    String username = sc.nextLine().trim().toLowerCase();
+
+                    System.out.print("Nhập mật khẩu: ");
+                    String password = sc.nextLine().trim().toLowerCase();
+
+                    if (controller.checkLoginAdmin(username, password)) {
+                        System.out.println("Đăng nhập thành công");
+                        AdminMenu.adminMenu();
+                    } else {
+                        System.out.println("Sai tên đăng nhập hoặc mật khẩu, vui lòng đăng nhập lại!");
                     }
-                    double quantity = Validate.inputDouble("Nhập số lượng muốn thêm: ");
-                    customerController.addToCart(id, quantity);
                 }
-
-                case 3 -> CartMenu.cartMenu();
-
-                case 4 -> AdminMenu.adminMenu();
 
                 case 0 -> {
                     System.out.println("Tạm biệt!");
@@ -56,43 +58,11 @@ public class MainMenu {
     public static void showMenu() {
         System.out.println("""
         ================MENU CHÍNH=================
-          1. Hiển thị danh sách mặt hàng            
-          2. Thêm mặt hàng vào giỏ hàng                 
-          3. Xem giỏ hàng                                            
-          4. [ADMIN] Quản lý sản phẩm          
+          1. Hiển thị danh sách mặt hàng                          
+          2. Giỏ hàng                                            
+          3. [ADMIN] Quản lý sản phẩm          
           0. Thoát                             
         ==========================================
         """);
-    }
-
-    public static void displayAll(List<Product> products) {
-        if (products.isEmpty()) {
-            System.out.println("List is empty!");
-            return;
-        }
-
-        StringBuilder sb = new StringBuilder();
-        sb.append(String.format("%-10s %-5s %-20s %-20s %-15s %-15s\n",
-                "Type", "ID", "Name", "Collection", "Price", "NumOfProducts"));
-        sb.append("--------------------------------------------------------------------------------------------\n");
-
-        for (Product product : products) {
-            double numOfProduct = 0;
-            if (product instanceof Bag bag) {
-                numOfProduct = bag.getNumberOfItems();
-            } else if (product instanceof Tarp tarp) {
-                numOfProduct = tarp.getNumberOfMeters();
-            }
-
-            sb.append(String.format("%-10s %-5s %-20s %-20s %-15.2f %-15.2f\n",
-                    product.getType(),
-                    product.getId(),
-                    product.getName(),
-                    product.getCollection(),
-                    product.getPrice(),
-                    numOfProduct));
-        }
-
-        System.out.println(sb);
     }
 }

@@ -36,13 +36,13 @@ public class ProductAdminService implements iProductAdminService{
     }
 
     @Override
-    public void editProduct(int id, String name, String collection, double price, double stock) {
-        repository.editProduct(id, name, collection, price, stock);
+    public void editProduct(int id, String name, String collection, double price, double stock, String description) {
+        repository.editProduct(id, name, collection, price, stock, description);
     }
 
     @Override
-    public void updateStock(int id, int newQuantity) {
-        repository.updateStock(id, newQuantity);
+    public boolean checkLoginAdmin(String username, String password) {
+        return repository.checkLoginAdmin(username, password);
     }
 
     @Override

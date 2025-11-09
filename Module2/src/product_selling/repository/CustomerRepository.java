@@ -1,9 +1,7 @@
 package product_selling.repository;
 
-import product_selling.entity.Bag;
-import product_selling.entity.Product;
-import product_selling.entity.CartItem;
-import product_selling.entity.Tarp;
+import product_selling.controller.ProductController;
+import product_selling.entity.*;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -30,10 +28,10 @@ public class CustomerRepository {
                 data = line.split(",");
                 if (data[0].trim().equalsIgnoreCase("Bao")) {
                     numOfItems = Integer.parseInt(data[5]);
-                    products.add(new Bag(Integer.parseInt(data[1]), data[2], data[3], Double.parseDouble(data[4]), numOfItems));
+                    products.add(new Bag(Integer.parseInt(data[1]), data[2], data[3], Double.parseDouble(data[4]), numOfItems, data[6]));
                 } else if (data[0].trim().equalsIgnoreCase("Bat")) {
                     numOfMeter = Double.parseDouble(data[5]);
-                    products.add(new Tarp(Integer.parseInt(data[1]), data[2], data[3], Double.parseDouble(data[4]), numOfMeter));
+                    products.add(new Tarp(Integer.parseInt(data[1]), data[2], data[3], Double.parseDouble(data[4]), numOfMeter, data[6]));
                 }
             }
         } catch (FileNotFoundException e) {
@@ -145,5 +143,38 @@ public class CustomerRepository {
         }
 
         writeFile(cart, false);
+    }
+
+    public List<Product> searchProductByName(String name) {
+        List<Product> products = readFile();
+        List<Product> result = new ArrayList<>();
+        for (Product product : products) {
+            if (product.getName().toLowerCase().contains(name.toLowerCase())) {
+                result.add(product);
+            }
+        }
+        return result;
+    }
+
+    public List<Product> searchProductByPrice(double price) {
+        List<Product> products = readFile();
+        List<Product> result = new ArrayList<>();
+        for (Product product : products) {
+            if (product.getPrice() == price) {
+                result.add(product);
+            }
+        }
+        return result;
+    }
+
+    public List<Product> searchProductByType(ProductType type) {
+        List<Product> products = readFile();
+        List<Product> result = new ArrayList<>();
+        for (Product product : products) {
+            if (product.getType() == type) {
+                result.add(product);
+            }
+        }
+        return result;
     }
 }

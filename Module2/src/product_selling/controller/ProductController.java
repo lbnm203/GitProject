@@ -20,8 +20,8 @@ public class ProductController {
         service.deleteProduct(id);
     }
 
-    public void editProduct(int id, String name, String collection, double price, double stock) {
-        service.editProduct(id, name, collection, price, stock);
+    public void editProduct(int id, String name, String collection, double price, double stock, String description) {
+        service.editProduct(id, name, collection, price, stock, description);
     }
 
     public boolean checkDuplicateId(int id) throws IdDuplicatedException {
@@ -32,8 +32,8 @@ public class ProductController {
         return service.findById(id);
     }
 
-    public void updateStock(int id, int newQuantity) {
-        service.updateStock(id, newQuantity);
+    public boolean checkLoginAdmin(String username, String password) {
+        return service.checkLoginAdmin(username, password);
     }
 
 }

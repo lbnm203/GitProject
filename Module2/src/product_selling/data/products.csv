@@ -1,5 +1,7 @@
-Bao,1,Bao Gạo,2 tạ,125000.0,60
-Bat,2,Bạt Hưng Phát,Loại 2,255000.0,1.0
-Bao,6,Bao Lam Hải,10 kg,550000.0,20
-Bao,3,Bao Cá,2 kg,275000.0,40
-Bat,4,Bạt Phúc Thịnh,Loại 3,2435000.0,50.0
+Bao,1,Bao Gạo,1 kg,125000,40,Bao chứa các loại gạo
+Bat,2,Bạt Hưng Phát,Loại 2,25500,1.0,Bạt che
+Bao,6,Bao Lam Hải,10 kg,550000,20,Bao chứa các vật dụng
+Bao,3,Bao Cá,2 kg,275000,40,Bao chứa cá
+Bat,4,Bạt Phúc Thịnh,Loại 3,17000,50.0,Bạt che
+Bao,5,Bao Nông Sản,20kg,325000,50,Bao chứa các mặt hàng nông sản
+Bat,7,Bạt Hoàng Long,Loại 1,30000,75.0,Bạt che

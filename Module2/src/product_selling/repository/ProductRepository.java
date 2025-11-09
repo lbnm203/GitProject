@@ -27,10 +27,10 @@ public class ProductRepository {
                 data = line.split(",");
                 if (data[0].trim().equalsIgnoreCase("Bao")) {
                     numOfItems = Integer.parseInt(data[5]);
-                    products.add(new Bag(Integer.parseInt(data[1]), data[2], data[3], Double.parseDouble(data[4]), numOfItems));
+                    products.add(new Bag(Integer.parseInt(data[1]), data[2], data[3], Double.parseDouble(data[4]), numOfItems, data[6]));
                 } else if (data[0].trim().equalsIgnoreCase("Bat")) {
                     numOfMeter = Double.parseDouble(data[5]);
-                    products.add(new Tarp(Integer.parseInt(data[1]), data[2], data[3], Double.parseDouble(data[4]), numOfMeter));
+                    products.add(new Tarp(Integer.parseInt(data[1]), data[2], data[3], Double.parseDouble(data[4]), numOfMeter, data[6]));
                 }
             }
         } catch (FileNotFoundException e) {
@@ -66,7 +66,7 @@ public class ProductRepository {
         writeFile(products, false);
     }
 
-    public void editProduct(int id, String name, String collection, double price, double stock) {
+    public void editProduct(int id, String name, String collection, double price, double stock, String description) {
         List<Product> products = readFile();
         boolean found = false;
 
@@ -81,6 +81,8 @@ public class ProductRepository {
                 } else if (p instanceof Tarp tarp) {
                     tarp.setNumberOfMeters(stock);
                 }
+
+                p.setDescription(description);
 
                 found = true;
                 break;
@@ -105,24 +107,10 @@ public class ProductRepository {
         return null;
     }
 
-    public void updateStock(int id, int newStock) {
-        List<Product> products = readFile();
-        boolean found = false;
 
-        for (Product product : products) {
-            if (product.getId() == id) {
-                found = true;
-                if (product instanceof Bag bag) {
-                    bag.setNumberOfItems((int) newStock);
-                } else if (product instanceof Tarp tarp) {
-                    tarp.setNumberOfMeters(newStock);
-                }
-                break;
-            }
-
-        }
-        if (found) {
-            writeFile(products, false);
-        }
+    public boolean checkLoginAdmin(String username, String password) {
+        final String ADMIN_USER = "admin";
+        final String ADMIN_PASSWORD = "admin";
+        return ADMIN_USER.equals(username) && ADMIN_PASSWORD.equals(password);
     }
 }

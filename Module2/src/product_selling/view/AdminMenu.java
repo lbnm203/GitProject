@@ -26,7 +26,6 @@ public class AdminMenu {
                 case 2 -> {
                     Product product = inputProduct();
                     controller.addProduct(product);
-                    System.out.println("Thêm thành công");
                 }
                 case 3 -> {
                     int deleteID = Validate.inputInteger("ID muốn xóa: ");
@@ -65,7 +64,10 @@ public class AdminMenu {
                         newStock = Validate.inputDouble("Nhập tổng số mét bạt: ");
                     }
 
-                    controller.editProduct(editID, newName, newCollection, newPrice, newStock);
+                    System.out.println("Nhập mô tả sản phẩm: ");
+                    String newDescription = sc.nextLine().trim();
+
+                    controller.editProduct(editID, newName, newCollection, newPrice, newStock, newDescription);
                 }
                 case 0 -> MainMenu.mainMenu();
                 default -> System.out.println("Yêu cầu không hợp lệ, hãy nhập lại!");
@@ -92,8 +94,8 @@ public class AdminMenu {
         }
 
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format("%-10s %-5s %-20s %-20s %-15s %-15s\n",
-                "Type", "ID", "Name", "Collection", "Price", "NumOfProducts"));
+        sb.append(String.format("%-10s %-5s %-20s %-20s %-15s %-15s %-20s\n",
+                "Type", "ID", "Name", "Collection", "Price", "NumOfProducts", "Description"));
         sb.append("--------------------------------------------------------------------------------------------\n");
 
         for (Product product : products) {
@@ -104,13 +106,14 @@ public class AdminMenu {
                 numOfProduct = tarp.getNumberOfMeters();
             }
 
-            sb.append(String.format("%-10s %-5s %-20s %-20s %-15.2f %-15.2f\n",
+            sb.append(String.format("%-10s %-5s %-20s %-20s %-15.2f %-15.2f %-20s\n",
                     product.getType(),
                     product.getId(),
                     product.getName(),
                     product.getCollection(),
                     product.getPrice(),
-                    numOfProduct));
+                    numOfProduct,
+                    product.getDescription()));
         }
 
         System.out.println(sb);
@@ -137,6 +140,9 @@ public class AdminMenu {
 
         double price = Validate.inputDouble("Nhập giá mặt hàng: ");
 
+        System.out.println("Nhập mô tả mặt hàng: ");
+        String description = sc.nextLine().trim();
+
         System.out.print("Nhập loại sản phẩm (Bao/Bat): ");
         String type = sc.nextLine().trim();
 
@@ -145,11 +151,11 @@ public class AdminMenu {
             return new Bag(id, name, collection, price, numberOfItems);
         } else if (type.equalsIgnoreCase("Bat")) {
             double numberOfMeters = Validate.inputDouble("Số lượng tổng mét bạt");
-            return new Tarp(id, name, collection, price, numberOfMeters);
+            return new Tarp(id, name, collection, price, numberOfMeters, description);
         } else {
             System.out.println("Loại không hợp lệ. Mặc định tạo sản phẩm Bao.");
             int numberOfItems = Validate.inputInteger("Số lượng tổng có trong bao");
-            return new Bag(id, name, collection, price, numberOfItems);
+            return new Bag(id, name, collection, price, numberOfItems, description);
         }
     }
 
@@ -172,9 +178,9 @@ public class AdminMenu {
 
     public static void displayOne(Product product) {
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format("%-10s %-5s %-20s %-20s %-15s %-15s\n",
-                "Type", "ID", "Name", "Collection", "Price", "NumOfProducts"));
-        sb.append("--------------------------------------------------------------------------------------------\n");
+        sb.append(String.format("%-10s %-5s %-20s %-20s %-15s %-15s %-20s\n",
+                "Type", "ID", "Name", "Collection", "Price", "NumOfProducts", "Description"));
+        sb.append("-".repeat(100) + "\n");
 
 
         double numOfProduct = 0;
@@ -184,13 +190,14 @@ public class AdminMenu {
             numOfProduct = tarp.getNumberOfMeters();
         }
 
-        sb.append(String.format("%-10s %-5s %-20s %-20s %-15.2f %-15.2f\n",
+        sb.append(String.format("%-10s %-5s %-20s %-20s %-15.2f %-15.2f %-20s\n",
                 product.getType(),
                 product.getId(),
                 product.getName(),
                 product.getCollection(),
                 product.getPrice(),
-                numOfProduct));
+                numOfProduct,
+                product.getDescription()));
 
         System.out.println(sb);
     }

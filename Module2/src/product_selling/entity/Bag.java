@@ -9,6 +9,11 @@ public class Bag extends Product{
         this.numberOfItems = numberOfItems;
     }
 
+    public Bag(int id, String name, String collection, double price, int numberOfItems, String description) {
+        super(id, name, collection, price, ProductType.Bao, description);
+        this.numberOfItems = numberOfItems;
+    }
+
     public int getNumberOfItems() {
         return numberOfItems;
     }
@@ -26,6 +31,6 @@ public class Bag extends Product{
     public String toCsv() {
         return String.join(",", "Bao",
                 String.valueOf(getId()), getName(), getCollection(), String.valueOf(getPrice()),
-                String.valueOf(numberOfItems));
+                String.valueOf(numberOfItems), getDescription());
     }
 }

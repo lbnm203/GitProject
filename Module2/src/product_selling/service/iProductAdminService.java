@@ -11,8 +11,8 @@ public interface iProductAdminService {
     boolean isDuplicateId(int id) throws IdDuplicatedException;
     void addProduct(Product p);
     void deleteProduct(int id);
-    void editProduct(int id, String name, String collection, double price, double stock);
-    void updateStock(int id, int newQuantity);
+    void editProduct(int id, String name, String collection, double price, double stock, String description);
+    boolean checkLoginAdmin(String username, String password);
     Product findById(int id);
 
 }
