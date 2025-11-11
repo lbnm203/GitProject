@@ -3,17 +3,10 @@ package product_selling.view;
 import product_selling.common.validate.Validate;
 import product_selling.controller.CustomerController;
 import product_selling.controller.ProductController;
-import product_selling.entity.Bag;
-import product_selling.entity.Product;
-import product_selling.entity.Tarp;
-
-
-import java.util.List;
 import java.util.Scanner;
 
 public class MainMenu {
     private static final ProductController controller = new ProductController();
-    private static final CustomerController customerController = new CustomerController();
 
     public static void mainMenu() {
         int choice;

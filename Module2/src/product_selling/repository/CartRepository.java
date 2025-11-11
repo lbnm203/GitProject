@@ -8,7 +8,6 @@ import product_selling.entity.Tarp;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class CartRepository {
     private static final String path = "src/product_selling/data/products_in_cart.csv";

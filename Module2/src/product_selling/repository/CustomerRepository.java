@@ -1,6 +1,4 @@
 package product_selling.repository;
-
-import product_selling.controller.ProductController;
 import product_selling.entity.*;
 
 import java.io.*;
