@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fibonanci</title>
+</head>
+<body>
+    <h3>Fibonanci</h3>
+    <input type="text" id="inputNumber">
+    <button onclick="calculateFibonacci()">Fibonacci</button>
+    <p id="listFibo"></p>
+    <p id="totalList"></p>
+</body>
+<script>
+    import { checkNumber } from "../bai_tap_them_es6/utils/valid";
+    import { checkFibonacci } from "../bai_tap_them_es6/utils/valid";
+
+    export const calculateFibonacci = () => {
+        const nums = document.getElementById('inputNumber').value;
+
+        if (!checkNumber(nums)) {
+            document.getElementById('listFibo').innerHTML = `Hãy nhập vào 1 số`;
+            return;
+        }
+
+        if (!checkFibonacci(nums)) {
+
+        }
+
+        for (let i = 0; i < nums; i++) {
+
+        }
+
+        const listFibo = ()
+    }
+
+</script>
+</html>
